@@ -10,7 +10,7 @@
     <iconUrl>https://raw.githubusercontent.com/SubPointSolutions/spmeta2/dev/SPMeta2/SPMeta2.Dependencies/Images/SPMeta2_64_64.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>This package is a core SPMeta2 extensions that addes definiions for Nintex Forms (Workflows to come)</description>
-    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <releaseNotes>Initial release, forms only and SP2013+ on prem only.</releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>SharePoint Nintex SPMeta2</tags>
     <dependencies>
