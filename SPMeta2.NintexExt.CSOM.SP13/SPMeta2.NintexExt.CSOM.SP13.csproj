@@ -99,6 +99,7 @@
       <HintPath>..\packages\SPMeta2.CSOM.Foundation.1.2.140\lib\net45\SPMeta2.CSOM.dll</HintPath>
     </Reference>
     <Reference Include="SPMeta2.NintexExt.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\SPMeta2.NintexExt.Core.0.0.1\lib\net45\SPMeta2.NintexExt.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
