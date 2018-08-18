@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>SPMeta2.NintexExt.Core</id>
+    <version>0.0.1</version>
+    <authors>mbakirov</authors>
+    <owners>mbakirov</owners>
+    <licenseUrl>https://opensource.org/licenses/MS-PL</licenseUrl>
+    <projectUrl>https://github.com/IgniaAustralia/SPMeta2.NintexExt</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/SubPointSolutions/spmeta2/dev/SPMeta2/SPMeta2.Dependencies/Images/SPMeta2_64_64.png</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>This package is a core SPMeta2 extensions that addes definiions for Nintex Forms (Workflows to come)</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>SharePoint Nintex SPMeta2</tags>
+    <dependencies>
+      <dependency id="SPMeta2.Core" version="1.2.50" />
+    </dependencies>
+  </metadata>
+</package>

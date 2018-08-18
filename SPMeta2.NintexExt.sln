@@ -1,0 +1,60 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2047
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPMeta2.NintexExt.CSOM.SP13.Test", "SPMeta2.NintexExt.CSOM.SP13.Test\SPMeta2.NintexExt.CSOM.SP13.Test.csproj", "{A29BD731-4C05-4159-A5FA-BDE0A63555E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8DBEB528-3171-40A5-A2A6-F5DC6E7B6D0B}"
+	ProjectSection(SolutionItems) = preProject
+		license.md = license.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPMeta2.NintexExt.Core", "SPMeta2.NintexExt.Core\SPMeta2.NintexExt.Core.csproj", "{37030E75-2082-45AB-8B88-8540EC56A8B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPMeta2.NintexExt.CSOM.SP13", "SPMeta2.NintexExt.CSOM.SP13\SPMeta2.NintexExt.CSOM.SP13.csproj", "{4E417970-C7C2-478E-9DC1-8CA58BC50094}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2013_ONPREM_NF_NFPublishExample", "2013_ONPREM_NF_NFPublishExample", "{D73C02D0-C7C6-4162-B0FD-3AB35FC5E37B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NintexFormsClient", "2013_ONPREM_NF_NFPublishExample\NintexFormsClient\NintexFormsClient.csproj", "{20F561EE-D688-4609-A9FD-639AD25A1D07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublishFormExample", "2013_ONPREM_NF_NFPublishExample\PublishFormExample\PublishFormExample.csproj", "{D6AA2918-472F-4CC8-961E-7A00500284B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A29BD731-4C05-4159-A5FA-BDE0A63555E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A29BD731-4C05-4159-A5FA-BDE0A63555E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A29BD731-4C05-4159-A5FA-BDE0A63555E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A29BD731-4C05-4159-A5FA-BDE0A63555E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37030E75-2082-45AB-8B88-8540EC56A8B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37030E75-2082-45AB-8B88-8540EC56A8B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37030E75-2082-45AB-8B88-8540EC56A8B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37030E75-2082-45AB-8B88-8540EC56A8B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E417970-C7C2-478E-9DC1-8CA58BC50094}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E417970-C7C2-478E-9DC1-8CA58BC50094}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E417970-C7C2-478E-9DC1-8CA58BC50094}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E417970-C7C2-478E-9DC1-8CA58BC50094}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20F561EE-D688-4609-A9FD-639AD25A1D07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20F561EE-D688-4609-A9FD-639AD25A1D07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20F561EE-D688-4609-A9FD-639AD25A1D07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20F561EE-D688-4609-A9FD-639AD25A1D07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6AA2918-472F-4CC8-961E-7A00500284B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6AA2918-472F-4CC8-961E-7A00500284B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6AA2918-472F-4CC8-961E-7A00500284B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6AA2918-472F-4CC8-961E-7A00500284B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{20F561EE-D688-4609-A9FD-639AD25A1D07} = {D73C02D0-C7C6-4162-B0FD-3AB35FC5E37B}
+		{D6AA2918-472F-4CC8-961E-7A00500284B9} = {D73C02D0-C7C6-4162-B0FD-3AB35FC5E37B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B5C09A64-FC58-409E-8FD1-9C1000E79D56}
+	EndGlobalSection
+EndGlobal
