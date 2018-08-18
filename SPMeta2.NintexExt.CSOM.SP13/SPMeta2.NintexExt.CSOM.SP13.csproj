@@ -98,6 +98,9 @@
     <Reference Include="SPMeta2.CSOM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d71faae3bf28531a, processorArchitecture=MSIL">
       <HintPath>..\packages\SPMeta2.CSOM.Foundation.1.2.140\lib\net45\SPMeta2.CSOM.dll</HintPath>
     </Reference>
+    <Reference Include="SPMeta2.NintexExt.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SPMeta2.NintexExt.Core.0.0.1\lib\net45\SPMeta2.NintexExt.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -124,14 +127,8 @@
     <None Include="package.nuspec" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SPMeta2.NintexExt.Core\SPMeta2.NintexExt.Core.csproj">
-      <Project>{37030e75-2082-45ab-8b88-8540ec56a8b4}</Project>
-      <Name>SPMeta2.NintexExt.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Handlers\formatBad.txt" />
-    <Content Include="Handlers\formatGood.txt" />
+    <None Include="Handlers\formatBad.txt" />
+    <None Include="Handlers\formatGood.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
