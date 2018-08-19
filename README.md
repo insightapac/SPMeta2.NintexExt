@@ -15,6 +15,13 @@ Build the projects, this would be enough :).
 # Contribute
 There is a list of possible improvements down below.
 
+# revisions history
+
+## 0.0.1
+Initial release with nintex forms publishing on prem only
+
+
+
 # Appendix
 TODO: list of planned improvments/issies
 
