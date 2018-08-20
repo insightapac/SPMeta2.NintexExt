@@ -25,9 +25,13 @@ Initial release with nintex forms publishing on prem only
 # Appendix
 TODO: list of planned improvments/issies
 
+Try this code for better adfs integration
+https://github.com/SharePoint/PnP-Sites-Core/blob/master/Core/SAML authentication.md
+
 Add better support for the errors checkign after the request hsa been submitted, especially for the case of AD proxy.
 Add AD Proxy support.
 Add workflows.
 Add site workflows.
 Add workflow schedules.
+
 

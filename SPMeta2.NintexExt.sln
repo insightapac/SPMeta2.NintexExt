@@ -16,6 +16,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPMeta2.NintexExt.CSOM.SP13", "SPMeta2.NintexExt.CSOM.SP13\SPMeta2.NintexExt.CSOM.SP13.csproj", "{4E417970-C7C2-478E-9DC1-8CA58BC50094}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2013_ONPREM_NF_NFPublishExample", "2013_ONPREM_NF_NFPublishExample", "{D73C02D0-C7C6-4162-B0FD-3AB35FC5E37B}"
+	ProjectSection(SolutionItems) = preProject
+		2013_ONPREM_NF_NFPublishExample\readme.md = 2013_ONPREM_NF_NFPublishExample\readme.md
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NintexFormsClient", "2013_ONPREM_NF_NFPublishExample\NintexFormsClient\NintexFormsClient.csproj", "{20F561EE-D688-4609-A9FD-639AD25A1D07}"
 EndProject
