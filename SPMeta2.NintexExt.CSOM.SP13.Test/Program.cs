@@ -23,8 +23,6 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Test
                 WebModel.Provision(context, service);
                 //service.PreDeploymentServices.Add(new DefaultRequiredPropertiesValidationService());
             }
-
-            int q = 1; 
         }
     }
 }

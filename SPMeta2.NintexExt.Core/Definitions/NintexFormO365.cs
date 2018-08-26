@@ -8,7 +8,7 @@ using SPMeta2.Attributes.Regression;
 
 namespace SPMeta2.NintexExt.Core.Definitions
 {
-    public class NintexFormDefinition : DefinitionBase
+    public class NintexFormO365Definition : DefinitionBase
     {
         /// <summary>
         /// List content type name
@@ -20,13 +20,13 @@ namespace SPMeta2.NintexExt.Core.Definitions
         public virtual string ListContentTypeNameOrId { get; set; }
 
         /// <summary>
-        /// The string content of the form, this format is used for onprem forms.
+        /// The binary content of the form.
         /// </summary>
         [System.Runtime.Serialization.DataMemberAttribute]
         [ExpectUpdate]
         [ExpectValidation]
         [ExpectRequired]
-        public string FormXml { get; set; }
+        public byte[] FormData { get; set; }
 
     }
 }
