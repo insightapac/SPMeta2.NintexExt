@@ -33,6 +33,13 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test
                 NintexFormApiKeys.ApiKey = ConfigurationManager.AppSettings.Get("nintexApiKey");
                 NintexFormApiKeys.WebServiceUrl = ConfigurationManager.AppSettings.Get("nintexServiceUrl");
 
+                context.Load(context.Web, x=>x.Title, x=>x.Url);
+                context.ExecuteQuery();
+                Console.WriteLine("Provisioning to the site with");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("\ttitle:url {0}:{1}", context.Web.Title, context.Web.Url);
+                Console.ForegroundColor = ConsoleColor.White;
+
                 var service = new CSOMProvisionService();
                 service.RegisterModelHandlers(typeof(NintexFormApiKeys).Assembly);
                 WebModel.Provision(context, service);

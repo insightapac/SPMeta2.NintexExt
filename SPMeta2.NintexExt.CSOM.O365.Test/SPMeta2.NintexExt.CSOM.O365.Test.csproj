@@ -100,7 +100,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Files\NintexForm.nfp" />
+    <Content Include="Files\NintexForm.nfp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
