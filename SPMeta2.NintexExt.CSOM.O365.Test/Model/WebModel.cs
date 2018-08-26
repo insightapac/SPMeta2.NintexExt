@@ -30,12 +30,12 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
                         formmodel.OnProvisioning<Object>
                             (spMetaCtx =>
                             {
-                                Console.WriteLine("About to provision the form for {0}", ((NintexFormDefinition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
+                                Console.WriteLine("About to provision the form for {0}", ((NintexFormO365Definition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
                             });
                         formmodel.OnProvisioned<string>
                             (spMetaCtx =>
                             {
-                                Console.WriteLine("Provisoined the form for {0}", ((NintexFormDefinition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
+                                Console.WriteLine("Provisoined the form for {0}", ((NintexFormO365Definition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
                                 Console.WriteLine("The result is {0}", spMetaCtx.Object);
                             });
                     });
@@ -51,12 +51,12 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
                         formmodel.OnProvisioning<Object>
                             (spMetaCtx =>
                             {
-                                Console.WriteLine("About to provision the form for {0}", ((NintexFormDefinition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
+                                Console.WriteLine("About to provision the form for {0}", ((NintexFormO365Definition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
                             });
                         formmodel.OnProvisioned<string>
                             (spMetaCtx =>
                             {
-                                Console.WriteLine("Provisoined the form for {0}", ((NintexFormDefinition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
+                                Console.WriteLine("Provisoined the form for {0}", ((NintexFormO365Definition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
                                 Console.WriteLine("The result is {0}", spMetaCtx.Object);
                             });
                     });
