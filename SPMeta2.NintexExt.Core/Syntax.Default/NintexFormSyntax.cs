@@ -22,7 +22,8 @@ namespace SPMeta2.NintexExt.Core.Syntax.Default
             model.AddDefinitionNode(definition, action);
             return model;
         }
-        public static TModelNode AddNintexO365ApiKeys<TModelNode>(this TModelNode model, Definitions.NintexO365ApiKeys definition,
+        [Obsolete]
+        static TModelNode AddNintexO365ApiKeys<TModelNode>(this TModelNode model, Definitions.NintexO365ApiKeys definition,
             Action<ModelNode> action = null) where TModelNode : ModelNode, IContentTypeLinkHostModelNode, new()
         {
             model.AddDefinitionNode(definition, action);
