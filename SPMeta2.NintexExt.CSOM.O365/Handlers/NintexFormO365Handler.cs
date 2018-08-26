@@ -70,7 +70,16 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
             // default request headers.
             client.DefaultRequestHeaders.Authorization = authHeader;
 
+            var importFormUri = String.Format("{0}/api/v1/forms/{1}",
+                NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
+                Uri.EscapeUriString(list.Id.ToString()));
 
+            //TODO: figure out how to add content type in JSON
+            ByteArrayContent saveContent = new ByteArrayContent(formModel.FormData);
+            //HttpResponseMessage saveResponse = client.PutAsync(importFormUri, saveContent).Result;
+
+            //for debug
+            var q = 1;
 
         }
 
