@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Handlers\NintexFormO365Handler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\NintexFormApiKeys.cs" />
   </ItemGroup>
@@ -60,8 +61,6 @@
       <Name>SPMeta2.NintexExt.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Handlers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

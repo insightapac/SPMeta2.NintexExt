@@ -25,19 +25,20 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
                 web.AddList(TestList, list =>
                 {
                     // this refers to SPMeta2.NintexExt.Core.Syntax.Default;
-                    //list.AddNintexFormO365(form, formmodel=> {
-                    //    formmodel.OnProvisioning<Object>
-                    //        (spMetaCtx =>
-                    //        {
-                    //            Console.WriteLine("About to provision the form for {0}", ((NintexFormDefinition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
-                    //        });
-                    //    formmodel.OnProvisioned<string>
-                    //        (spMetaCtx =>
-                    //        {
-                    //            Console.WriteLine("Provisoined the form for {0}",((NintexFormDefinition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
-                    //            Console.WriteLine("The result is {0}", spMetaCtx.Object);
-                    //        });
-                    //});
+                    list.AddNintexFormO365(form, formmodel =>
+                    {
+                        formmodel.OnProvisioning<Object>
+                            (spMetaCtx =>
+                            {
+                                Console.WriteLine("About to provision the form for {0}", ((NintexFormDefinition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
+                            });
+                        formmodel.OnProvisioned<string>
+                            (spMetaCtx =>
+                            {
+                                Console.WriteLine("Provisoined the form for {0}", ((NintexFormDefinition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
+                                Console.WriteLine("The result is {0}", spMetaCtx.Object);
+                            });
+                    });
                     // if you do not use the syntax default, you can use the line below
                     //list.AddDefinitionNode(form);
                 });
@@ -45,19 +46,20 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
                 web.AddHostList(TestList, list =>
                 {
                     // this refers to SPMeta2.NintexExt.Core.Syntax.Default;
-                    //list.AddNintexFormO365(form, formmodel => {
-                    //    formmodel.OnProvisioning<Object>
-                    //        (spMetaCtx =>
-                    //        {
-                    //            Console.WriteLine("About to provision the form for {0}", ((NintexFormDefinition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
-                    //        });
-                    //    formmodel.OnProvisioned<string>
-                    //        (spMetaCtx =>
-                    //        {
-                    //            Console.WriteLine("Provisoined the form for {0}", ((NintexFormDefinition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
-                    //            Console.WriteLine("The result is {0}", spMetaCtx.Object);
-                    //        });
-                    //});
+                    list.AddNintexFormO365(form, formmodel =>
+                    {
+                        formmodel.OnProvisioning<Object>
+                            (spMetaCtx =>
+                            {
+                                Console.WriteLine("About to provision the form for {0}", ((NintexFormDefinition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
+                            });
+                        formmodel.OnProvisioned<string>
+                            (spMetaCtx =>
+                            {
+                                Console.WriteLine("Provisoined the form for {0}", ((NintexFormDefinition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
+                                Console.WriteLine("The result is {0}", spMetaCtx.Object);
+                            });
+                    });
                     // if you do not use the syntax default, you can use the line below
                     //list.AddDefinitionNode(form);
                 });

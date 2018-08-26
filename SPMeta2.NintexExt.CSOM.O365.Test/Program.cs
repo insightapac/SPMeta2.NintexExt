@@ -1,5 +1,6 @@
 ﻿using Microsoft.SharePoint.Client;
 using SPMeta2.CSOM.Services;
+using SPMeta2.NintexExt.CSOM.O365.Handlers;
 using SPMeta2.NintexExt.CSOM.O365.Services;
 using SPMeta2.NintexExt.CSOM.O365.Test.Model;
 using System;
@@ -41,7 +42,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test
                 Console.ForegroundColor = ConsoleColor.White;
 
                 var service = new CSOMProvisionService();
-                service.RegisterModelHandlers(typeof(NintexFormApiKeys).Assembly);
+                service.RegisterModelHandlers(typeof(NintexFormO365Handler).Assembly);
                 WebModel.Provision(context, service);
 
 
