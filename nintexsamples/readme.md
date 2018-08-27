@@ -1,0 +1,1 @@
+Here we store sample codes copied from the Nintex SDk site and left here for a reference

@@ -20,7 +20,7 @@ namespace SPMeta2.NintexExt.Core.Definitions
         public virtual string ListContentTypeNameOrId { get; set; }
 
         /// <summary>
-        /// The binary content of the form.
+        /// The string content of the form, this format is used for onprem forms.
         /// </summary>
         [System.Runtime.Serialization.DataMemberAttribute]
         [ExpectUpdate]
