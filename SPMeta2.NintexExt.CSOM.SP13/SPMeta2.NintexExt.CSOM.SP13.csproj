@@ -98,10 +98,6 @@
     <Reference Include="SPMeta2.CSOM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d71faae3bf28531a, processorArchitecture=MSIL">
       <HintPath>..\packages\SPMeta2.CSOM.Foundation.1.2.140\lib\net45\SPMeta2.CSOM.dll</HintPath>
     </Reference>
-    <Reference Include="SPMeta2.NintexExt.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\SPMeta2.NintexExt.Core.0.0.1\lib\net45\SPMeta2.NintexExt.Core.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -115,6 +111,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\NintexWorkflowWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Handlers\NintexListWorkflowHandler.cs" />
     <Compile Include="Handlers\NintexFormHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -122,6 +124,61 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\NintexWorkflowWS\SPMeta.NintexExt.CSOM.SP13.NintexWorkflowWS.ConfiguredOutcome.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NintexWorkflowWS\SPMeta.NintexExt.CSOM.SP13.NintexWorkflowWS.ContentType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NintexWorkflowWS\SPMeta.NintexExt.CSOM.SP13.NintexWorkflowWS.Folder.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NintexWorkflowWS\SPMeta.NintexExt.CSOM.SP13.NintexWorkflowWS.ItemsPendingApproval.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NintexWorkflowWS\SPMeta.NintexExt.CSOM.SP13.NintexWorkflowWS.MessageBoxItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NintexWorkflowWS\SPMeta.NintexExt.CSOM.SP13.NintexWorkflowWS.NameInUseStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NintexWorkflowWS\SPMeta.NintexExt.CSOM.SP13.NintexWorkflowWS.ProcessTaskResponseResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NintexWorkflowWS\SPMeta.NintexExt.CSOM.SP13.NintexWorkflowWS.PublishFromNWFNoOverwriteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NintexWorkflowWS\SPMeta.NintexExt.CSOM.SP13.NintexWorkflowWS.PublishFromNWFResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NintexWorkflowWS\SPMeta.NintexExt.CSOM.SP13.NintexWorkflowWS.PublishFromNWFSkipValidationNoOverwriteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NintexWorkflowWS\SPMeta.NintexExt.CSOM.SP13.NintexWorkflowWS.PublishFromNWFSkipValidationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NintexWorkflowWS\SPMeta.NintexExt.CSOM.SP13.NintexWorkflowWS.SaveFromNWFNoOverwriteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NintexWorkflowWS\SPMeta.NintexExt.CSOM.SP13.NintexWorkflowWS.SaveFromNWFResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NintexWorkflowWS\SPMeta.NintexExt.CSOM.SP13.NintexWorkflowWS.TaskStub.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NintexWorkflowWS\SPMeta.NintexExt.CSOM.SP13.NintexWorkflowWS.UserTask.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NintexWorkflowWS\SPMeta.NintexExt.CSOM.SP13.NintexWorkflowWS.WorkflowLog.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NintexWorkflowWS\SPMeta.NintexExt.CSOM.SP13.NintexWorkflowWS.WorkflowMetaData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NintexWorkflowWS\SPMeta.NintexExt.CSOM.SP13.NintexWorkflowWS.WorkflowTaskDetail.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NintexWorkflowWS\Workflow.wsdl" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -130,6 +187,33 @@
   <ItemGroup>
     <None Include="Handlers\formatBad.txt" />
     <None Include="Handlers\formatGood.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SPMeta2.NintexExt.Core\SPMeta2.NintexExt.Core.csproj">
+      <Project>{37030E75-2082-45AB-8B88-8540EC56A8B4}</Project>
+      <Name>SPMeta2.NintexExt.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\NintexWorkflowWS\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\NintexWorkflowWS\Workflow.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\NintexWorkflowWS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\NintexWorkflowWS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\NintexWorkflowWS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

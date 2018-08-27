@@ -100,14 +100,6 @@
     <Reference Include="SPMeta2.CSOM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d71faae3bf28531a, processorArchitecture=MSIL">
       <HintPath>..\packages\SPMeta2.CSOM.Foundation.1.2.140\lib\net45\SPMeta2.CSOM.dll</HintPath>
     </Reference>
-    <Reference Include="SPMeta2.NintexExt.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\SPMeta2.NintexExt.Core.0.0.1\lib\net45\SPMeta2.NintexExt.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="SPMeta2.NintexExt.CSOM.SP13, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\SPMeta2.NintexExt.CSOM.SP13.0.0.1\lib\net45\SPMeta2.NintexExt.CSOM.SP13.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -129,7 +121,12 @@
     <Compile Include="Utils\Helpers.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Files\SampleListWorkflow.nwf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +136,16 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SPMeta2.NintexExt.Core\SPMeta2.NintexExt.Core.csproj">
+      <Project>{37030E75-2082-45AB-8B88-8540EC56A8B4}</Project>
+      <Name>SPMeta2.NintexExt.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SPMeta2.NintexExt.CSOM.SP13\SPMeta2.NintexExt.CSOM.SP13.csproj">
+      <Project>{4E417970-C7C2-478E-9DC1-8CA58BC50094}</Project>
+      <Name>SPMeta2.NintexExt.CSOM.SP13</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

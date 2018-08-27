@@ -39,6 +39,24 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Test.Model
                     });
                     // if you do not use the syntax default, you can use the line below
                     //list.AddDefinitionNode(form);
+
+
+                    list.AddNintexWorkflow(workflow, workflowModel =>
+                    {
+                        workflowModel.OnProvisioning<Object>
+                            (spMetaCtx =>
+                            {
+                                Console.WriteLine("About to provision the workflow on the list");
+                            });
+                        workflowModel.OnProvisioned<Object>
+                            (spMetaCtx =>
+                            {
+                                Console.WriteLine("Provisioned the workflow");
+                                Console.WriteLine("The result is {0}", spMetaCtx.Object);
+                            });
+                    });
+
+
                 });
                 // same here, same list, testing that it works when the list is already there
                 web.AddHostList(TestList, list =>
@@ -59,6 +77,22 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Test.Model
                     });
                     // if you do not use the syntax default, you can use the line below
                     //list.AddDefinitionNode(form);
+
+                    list.AddNintexWorkflow(workflow, workflowModel =>
+                    {
+                        workflowModel.OnProvisioning<Object>
+                            (spMetaCtx =>
+                            {
+                                Console.WriteLine("About to provision the workflow on the list");
+                            });
+                        workflowModel.OnProvisioned<Object>
+                            (spMetaCtx =>
+                            {
+                                Console.WriteLine("Provisioned the workflow");
+                                Console.WriteLine("The result is {0}", spMetaCtx.Object);
+                            });
+                    });
+
                 });
             });
 
@@ -78,6 +112,12 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Test.Model
             ListContentTypeNameOrId = "Item",
             //ListContentTypeNameOrId = "0x0100BA82E9E260029149B08C0DEB97F100A5",
             FormXml = System.IO.File.ReadAllText(@"Files\ItemForm.xml", Encoding.Unicode)
+        };
+
+        public static NintexListWorkflowDefinition workflow = new NintexListWorkflowDefinition()
+        {
+            Name = "Newly Deployed Workflow",
+            WorkflowXml = System.IO.File.ReadAllText(@"Files\SampleListWorkflow.nwf", Encoding.UTF8)
         };
 
     }
