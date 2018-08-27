@@ -1,0 +1,4 @@
+SPMeta2.NintexExt.Core	../SPMeta2.NintexExt.Core/SPMeta2.NintexExt.Core.csproj	../packages/SPMeta2.NintexExt.Core.0.0.1/lib/net45/SPMeta2.NintexExt.Core.dll
+SPMeta2.NintexExt.CSOM.SP13	../SPMeta2.NintexExt.CSOM.SP13/SPMeta2.NintexExt.CSOM.SP13.csproj	../packages/SPMeta2.NintexExt.CSOM.SP13.0.0.1/lib/net45/SPMeta2.NintexExt.CSOM.SP13.dll
+SPMeta2.NintexExt.Core	../SPMeta2.NintexExt.Core/SPMeta2.NintexExt.Core.csproj	../packages/SPMeta2.NintexExt.Core.0.0.1/lib/net45/SPMeta2.NintexExt.Core.dll
+SPMeta2.NintexExt.CSOM.SP13	../SPMeta2.NintexExt.CSOM.SP13/SPMeta2.NintexExt.CSOM.SP13.csproj	../packages/SPMeta2.NintexExt.CSOM.SP13.0.0.1/lib/net45/SPMeta2.NintexExt.CSOM.SP13.dll
