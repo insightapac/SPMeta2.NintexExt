@@ -48,7 +48,6 @@
     <Compile Include="Definitions\NintexListWorkflow.cs" />
     <Compile Include="Definitions\NintexFormO365.cs" />
     <Compile Include="Definitions\NintexForm.cs" />
-    <Compile Include="Definitions\NintexO365ApiKeys.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Syntax.Default\NintexListWorkflowSyntax.cs" />
     <Compile Include="Syntax.Default\NintexFormSyntax.cs" />
