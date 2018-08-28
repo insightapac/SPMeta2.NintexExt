@@ -19,6 +19,7 @@ using System.Xml.Linq;
 using System.Runtime.Serialization.Json;
 using SPMeta2.Common;
 using SPMeta.NintexExt.CSOM.SP13.NintexWorkflowWS;
+using System.ServiceModel;
 
 namespace SPMeta2.NintexExt.CSOM.SP13.Handlers
 {
@@ -76,22 +77,58 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Handlers
 
             var publishUrl = UrlUtility.CombineUrl(clientContext.Url, "/_vti_bin/NintexWorkflow/Workflow.asmx");
 
-            NintexWorkflowWSSoapClient soapClient = new NintexWorkflowWSSoapClient("NintexWorkflowWSSoap"); //need to name the endpoint being used.
+            // Create the binding as per the settings specified in the Nintex SDK
 
-            soapClient.Endpoint.Address = new System.ServiceModel.EndpointAddress(new Uri(publishUrl));
-            soapClient.Endpoint.ListenUri = new Uri(publishUrl);
+            var binding = new BasicHttpBinding
+            {               
+
+                Name = "NintexWorkflowWSSoap",
+                CloseTimeout = TimeSpan.FromMinutes(1),
+                OpenTimeout = TimeSpan.FromMinutes(1),
+                ReceiveTimeout = TimeSpan.FromMinutes(10),
+                SendTimeout = TimeSpan.FromMinutes(1),
+                AllowCookies = false,
+                BypassProxyOnLocal = false,
+                HostNameComparisonMode = HostNameComparisonMode.StrongWildcard,
+                MaxBufferSize = 100000000,
+                MaxBufferPoolSize = 100000000,
+                MaxReceivedMessageSize = 100000000,
+                MessageEncoding = WSMessageEncoding.Text,
+                TextEncoding = System.Text.Encoding.UTF8,
+                TransferMode = TransferMode.Buffered,
+                UseDefaultWebProxy = true,                
+            };
+
+            binding.ReaderQuotas.MaxDepth = 32;
+            binding.ReaderQuotas.MaxStringContentLength = 999999999;
+            binding.ReaderQuotas.MaxArrayLength = 16384;
+            binding.ReaderQuotas.MaxBytesPerRead = 4096;
+            binding.ReaderQuotas.MaxNameTableCharCount = 16384;
+
+            binding.Security.Mode = BasicHttpSecurityMode.TransportCredentialOnly;
+            binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Ntlm; // TODO - is this unnecessarily constraining?
+            binding.Security.Transport.ProxyCredentialType = HttpProxyCredentialType.None;
+            binding.Security.Transport.Realm = "";
+
+            binding.Security.Message.ClientCredentialType = BasicHttpMessageCredentialType.UserName;
+            binding.Security.Message.AlgorithmSuite = System.ServiceModel.Security.SecurityAlgorithmSuite.Default;
+
+            var endpoint = new EndpointAddress(publishUrl);
+
+            NintexWorkflowWSSoapClient soapClient = new NintexWorkflowWSSoapClient(binding, endpoint);
 
             soapClient.ClientCredentials.Windows.ClientCredential = clientContext.Credentials.GetCredential(new Uri(publishUrl), "");
             soapClient.ClientCredentials.Windows.AllowNtlm = true; // optional - NOTE - this was copied from Nintex SDK, it's not clear if this is required or helpful
             soapClient.ClientCredentials.Windows.AllowedImpersonationLevel = System.Security.Principal.TokenImpersonationLevel.Impersonation; //optional - NOTE - this was copied from Nintex SDK, it's not clear if this is required or helpful
 
             byte[] workflowAsByteArray = System.Text.UTF8Encoding.UTF8.GetBytes(WorkflowModel.WorkflowXml);
-            // System.Convert.ToBase64String(workflowAsByteArray);
+            
+            // System.Convert.ToBase64String(workflowAsByteArray); // This line was in the Nintex SDK sample but appears to break the process
 
             var result = soapClient.PublishFromNWF(workflowAsByteArray, list.Title, WorkflowModel.Name, true);
 
 
-
+            // TODO - improve the method of constructing the web service call, similar to the below
 
             //var executor = clientContext.WebRequestExecutorFactory.CreateWebRequestExecutor(clientContext, publishUrl);
             //executor.RequestContentType = "application/json";
