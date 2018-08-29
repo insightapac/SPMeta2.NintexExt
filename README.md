@@ -19,6 +19,9 @@ There is a list of possible improvements down below.
 
 ## 0.0.2
 Fixed the csom references for the on-premise package (now we refer to 15.0.0.0 to be compatible with old SDKs)
+Note that the rerference to the CSOM package has been removed on purpose so you can use any sharepoint csom package as long as microsoft.sharepoint.client is at least 15.0.0.0
+
+
 Added an initial ability to provision list workflows. As we had to separately call the nintex wcf service, for now only windows authentication is supported.
 Try it and let us know .
 
