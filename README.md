@@ -17,6 +17,11 @@ There is a list of possible improvements down below.
 
 # revisions history
 
+## 0.0.2
+Fixed the csom references for the on-premise package (now we refer to 15.0.0.0 to be compatible with old SDKs)
+Added an initial ability to provision list workflows. As we had to separately call the nintex wcf service, for now only windows authentication is supported.
+Try it and let us know .
+
 ## 0.0.1
 Initial release with nintex forms publishing on prem only
 

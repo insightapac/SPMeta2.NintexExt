@@ -9,8 +9,11 @@
     <projectUrl>https://github.com/IgniaAustralia/SPMeta2.NintexExt</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/SubPointSolutions/spmeta2/dev/SPMeta2/SPMeta2.Dependencies/Images/SPMeta2_64_64.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <description>This package is a core SPMeta2 extensions that addes definiions for Nintex Forms (Workflows to come)</description>
-    <releaseNotes>Initial release, forms only and SP2013+ on prem only.</releaseNotes>
+    <description>This package is a core SPMeta2 extensions that addes definiions for Nintex Forms and Nintex Workflows</description>
+    <releaseNotes>
+      Fixed the csom references for the on-premise package (now we refer to 15.0.0.0 to be compatible with old SDKs)
+      Added an initial ability to provision list workflows. As we had to separately call the nintex wcf service, for now only windows authentication is supported.
+    </releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>SharePoint Nintex SPMeta2</tags>
     <dependencies>
