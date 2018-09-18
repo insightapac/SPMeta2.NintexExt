@@ -76,7 +76,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
 
             //TODO: figure out how to add content type in JSON
             ByteArrayContent saveContent = new ByteArrayContent(formModel.FormData);
-            //HttpResponseMessage saveResponse = client.PutAsync(importFormUri, saveContent).Result;
+            HttpResponseMessage saveResponse = client.PutAsync(importFormUri, saveContent).Result;
 
             //for debug
             var q = 1;
