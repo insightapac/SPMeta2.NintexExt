@@ -24,6 +24,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
             {
                 web.AddList(TestList, list =>
                 {
+                    list.AddContentTypeLink(BuiltInContentTypeId.Issue);
                     // this refers to SPMeta2.NintexExt.Core.Syntax.Default;
                     list.AddNintexFormO365(form, formmodel =>
                     {
@@ -79,7 +80,9 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
         public static NintexFormO365Definition form = new NintexFormO365Definition()
         {
             ListContentTypeNameOrId = "Item",
-            FormData = System.IO.File.ReadAllBytes(@"Files\NintexForm.nfp")
+            FormData = System.IO.File.ReadAllBytes(@"Files\NintexForm.nfp"),
+            Publish = true,
+            AssignedUseForProduction = null
         };
 
     }

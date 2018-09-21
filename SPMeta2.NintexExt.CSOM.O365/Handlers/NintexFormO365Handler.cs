@@ -75,8 +75,47 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                 Uri.EscapeUriString(list.Id.ToString()));
 
             //TODO: figure out how to add content type in JSON
-            ByteArrayContent saveContent = new ByteArrayContent(formModel.FormData);
+            HttpContent saveContent = null;
+            //if (string.IsNullOrEmpty(formModel.ListContentTypeNameOrId))
+            {
+                saveContent = new ByteArrayContent(formModel.FormData);
+            }
+            //    else
+            //    {
+            //        var result = string.Format(@"{{
+            //            ""contentTypeId"":""{0}"",
+            //            ""listId"":""{1}"",
+            //            ""attachment"":{{
+            //                ""name"" : ""file.txt"",
+            //                ""fileName"" : ""file.txt"",
+            //                ""data"": ""{2}""
+            //            }}
+            //}}",
+            //            //                        ""mimeType"" : ""text/plain"",
+
+            //            formModel.ListContentTypeNameOrId,
+            //            Uri.EscapeUriString(list.Id.ToString("B").ToUpper()),
+            //            Convert.ToBase64String(formModel.FormData));
+            //        saveContent = new StringContent(result);
+            //    }
             HttpResponseMessage saveResponse = client.PutAsync(importFormUri, saveContent).Result;
+
+            if (formModel.Publish)
+            {
+                var publishFormUri = String.Format("{0}/api/v1/forms/{1}/publish",
+                    NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
+                    Uri.EscapeUriString(list.Id.ToString()));
+                var content = "";
+                if (!string.IsNullOrEmpty(formModel.ListContentTypeNameOrId))
+                {
+                    content = string.Format(@"{{""contentTypeId"":""{0}"",""listId"":""{1}""}}",
+
+                        formModel.ListContentTypeNameOrId,
+                        list.Id.ToString("B").ToUpper());
+                }
+                HttpResponseMessage puiblishResponse = client.PostAsync(publishFormUri, new StringContent(content)).Result;
+
+            }
 
             //for debug
             var q = 1;
