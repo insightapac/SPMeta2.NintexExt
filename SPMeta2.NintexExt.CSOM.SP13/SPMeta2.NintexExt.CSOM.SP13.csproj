@@ -71,10 +71,10 @@
       <HintPath>..\packages\Microsoft.SharePoint2013.CSOM.15.0.4711.1000\lib\net45\Microsoft.SharePoint.Client.WorkflowServices.dll</HintPath>
     </Reference>
     <Reference Include="SPMeta2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d71faae3bf28531a, processorArchitecture=MSIL">
-      <HintPath>..\packages\SPMeta2.Core.1.2.140\lib\net45\SPMeta2.dll</HintPath>
+      <HintPath>..\packages\SPMeta2.Core.1.2.50\lib\net45\SPMeta2.dll</HintPath>
     </Reference>
     <Reference Include="SPMeta2.CSOM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d71faae3bf28531a, processorArchitecture=MSIL">
-      <HintPath>..\packages\SPMeta2.CSOM.Foundation.1.2.140\lib\net45\SPMeta2.CSOM.dll</HintPath>
+      <HintPath>..\packages\SPMeta2.CSOM.Foundation.1.2.50\lib\net45\SPMeta2.CSOM.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

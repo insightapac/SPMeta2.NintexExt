@@ -78,7 +78,7 @@
       <HintPath>..\packages\Microsoft.SharePointOnline.CSOM.16.1.5715.1200\lib\net45\Microsoft.SharePoint.Client.WorkflowServices.dll</HintPath>
     </Reference>
     <Reference Include="SPMeta2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d71faae3bf28531a, processorArchitecture=MSIL">
-      <HintPath>..\packages\SPMeta2.Core.1.2.140\lib\net45\SPMeta2.dll</HintPath>
+      <HintPath>..\packages\SPMeta2.Core.1.2.90\lib\net45\SPMeta2.dll</HintPath>
     </Reference>
     <Reference Include="SPMeta2.CSOM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=d71faae3bf28531a, processorArchitecture=MSIL">
       <HintPath>..\packages\SPMeta2.CSOM.Foundation-v16.1.2.90\lib\net45\SPMeta2.CSOM.dll</HintPath>
