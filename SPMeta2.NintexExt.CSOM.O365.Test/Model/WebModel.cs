@@ -82,7 +82,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
             ListContentTypeNameOrId = "Item",
             FormData = System.IO.File.ReadAllBytes(@"Files\NintexForm.nfp"),
             Publish = true,
-            AssignedUseForProduction = null
+            AssignedUseForProduction = false
         };
 
     }

@@ -43,3 +43,6 @@ Add site workflows.
 Add workflow schedules.
 
 
+Office 365 forms
+add support for all http responses storage 
+add calculation of the content type

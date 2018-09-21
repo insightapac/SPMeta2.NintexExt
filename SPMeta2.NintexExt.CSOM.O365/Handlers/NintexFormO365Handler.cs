@@ -114,11 +114,21 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                         list.Id.ToString("B").ToUpper());
                 }
                 HttpResponseMessage puiblishResponse = client.PostAsync(publishFormUri, new StringContent(content)).Result;
-
             }
-
-            //for debug
-            var q = 1;
+            //if (formModel.AssignedUseForProduction.HasValue)
+            //{
+            //    //TODO: add the content type here
+            //    var publishFormUri = String.Format("{0}/api/v1/forms/{1},0x01006C3A1D644D3AED45AC37DDCD403CCFBE/assigneduse",
+            //        NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
+            //        Uri.EscapeUriString(list.Id.ToString()));
+            //    var content = "";
+            //    content = string.Format(@"{{""value"":""{0}""}}",
+            //        formModel.AssignedUseForProduction.Value ? "production" : "development");
+            //    // interesting, this can return 405 and in details ()puiblishResponse.Content.ReadAsStringAsync()
+            //    // in my case i had  a message saying "your license does not allow this" or something like this
+            //    HttpResponseMessage puiblishResponse = client.PutAsync(publishFormUri, 
+            //        new StringContent(content,null, "application/json")).Result;
+            //}
 
         }
 
