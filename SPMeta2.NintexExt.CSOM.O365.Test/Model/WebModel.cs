@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SPMeta2.NintexExt.CSOM.O365.Handlers;
 
 namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
 {
@@ -33,11 +34,23 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
                             {
                                 Console.WriteLine("About to provision the form for {0}", ((NintexFormO365Definition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
                             });
-                        formmodel.OnProvisioned<string>
+                        formmodel.OnProvisioned<NintexFormO365HandlerOnProvisionedEvent>
                             (spMetaCtx =>
                             {
                                 Console.WriteLine("Provisoined the form for {0}", ((NintexFormO365Definition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
-                                Console.WriteLine("The result is {0}", spMetaCtx.Object);
+                                var result = spMetaCtx.Object;
+                                if (result.saveResponse != null)
+                                {
+                                    Console.WriteLine("The result of save is {0}", result.saveResponse.Content.ReadAsStringAsync().Result);
+                                }
+                                if (result.puiblishResponse != null)
+                                {
+                                    Console.WriteLine("The result of publish is {0}", result.puiblishResponse.Content.ReadAsStringAsync().Result);
+                                }
+                                if (result.assignedUseForProductionValue != null)
+                                {
+                                    Console.WriteLine("The result of assigned use is {0}", result.assignedUseForProductionValue.Content.ReadAsStringAsync().Result);
+                                }
                             });
                     });
                     // if you do not use the syntax default, you can use the line below
@@ -54,11 +67,23 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
                             {
                                 Console.WriteLine("About to provision the form for {0}", ((NintexFormO365Definition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
                             });
-                        formmodel.OnProvisioned<string>
+                        formmodel.OnProvisioned<NintexFormO365HandlerOnProvisionedEvent>
                             (spMetaCtx =>
                             {
                                 Console.WriteLine("Provisoined the form for {0}", ((NintexFormO365Definition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
-                                Console.WriteLine("The result is {0}", spMetaCtx.Object);
+                                var result = spMetaCtx.Object;
+                                if (result.saveResponse != null)
+                                {
+                                    Console.WriteLine("The result of save is {0}", result.saveResponse.Content.ReadAsStringAsync().Result);
+                                }
+                                if (result.puiblishResponse != null)
+                                {
+                                    Console.WriteLine("The result of publish is {0}", result.puiblishResponse.Content.ReadAsStringAsync().Result);
+                                }
+                                if (result.assignedUseForProductionValue != null)
+                                {
+                                    Console.WriteLine("The result of assigned use is {0}", result.assignedUseForProductionValue.Content.ReadAsStringAsync().Result);
+                                }
                             });
                     });
                     // if you do not use the syntax default, you can use the line below

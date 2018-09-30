@@ -27,7 +27,6 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Handlers
     {
         [DataContract]
         public class NintexListWorkflowSerialize
-
         {
             [DataMember]
             public string listId { get; set; }
@@ -126,7 +125,6 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Handlers
             // System.Convert.ToBase64String(workflowAsByteArray); // This line was in the Nintex SDK sample but appears to break the process
 
             var result = soapClient.PublishFromNWF(workflowAsByteArray, list.Title, WorkflowModel.Name, true);
-
 
             // TODO - improve the method of constructing the web service call, similar to the below
 

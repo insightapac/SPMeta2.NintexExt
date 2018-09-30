@@ -1,5 +1,6 @@
 ﻿using Microsoft.SharePoint.Client;
 using SPMeta2.Common;
+using SPMeta2.CSOM.Extensions;
 using SPMeta2.CSOM.ModelHandlers;
 using SPMeta2.CSOM.ModelHosts;
 using SPMeta2.Definitions;
@@ -25,6 +26,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
 
         public override void DeployModel(object modelHost, DefinitionBase model)
         {
+            NintexFormO365HandlerOnProvisionedEvent result = new NintexFormO365HandlerOnProvisionedEvent();
             // we need to have list id and the sharepoint authentication cookie
             NintexFormO365Definition formModel = (NintexFormO365Definition)model;
             //TODO: add some specifics?
@@ -47,6 +49,26 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
 
             var clientCredentials = clientContext.Credentials.WithAssertAndCast<SharePointOnlineCredentials>("sharepoint online credentials", value => value.RequireNotNull());
             var spSiteUrl = clientContext.Url;
+
+            /// find the content type id or get the default one if not specified
+            var listContentTypes = list.ContentTypes;
+            clientContext.Load(listContentTypes);
+            clientContext.ExecuteQueryWithTrace();
+            var listContentTypesArray = listContentTypes.ToArray();
+            var listContentType = listContentTypesArray[0];
+            if (!string.IsNullOrEmpty(formModel.ListContentTypeNameOrId))
+            {
+                foreach (var x in listContentTypesArray)
+                {
+                    if (
+                        (x.Name == formModel.ListContentTypeNameOrId) 
+                            || 
+                        (x.Id.StringValue.StartsWith(formModel.ListContentTypeNameOrId))
+                    ){
+                        listContentType = x;
+                    }
+                }
+            }
 
             // Create a new HTTP client and configure its base address.
             HttpClient client = new HttpClient();
@@ -98,7 +120,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
             //            Convert.ToBase64String(formModel.FormData));
             //        saveContent = new StringContent(result);
             //    }
-            HttpResponseMessage saveResponse = client.PutAsync(importFormUri, saveContent).Result;
+            result.saveResponse = client.PutAsync(importFormUri, saveContent).Result;
 
             if (formModel.Publish)
             {
@@ -113,22 +135,34 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                         formModel.ListContentTypeNameOrId,
                         list.Id.ToString("B").ToUpper());
                 }
-                HttpResponseMessage puiblishResponse = client.PostAsync(publishFormUri, new StringContent(content)).Result;
+                result.puiblishResponse = client.PostAsync(publishFormUri, new StringContent(content)).Result;
             }
-            //if (formModel.AssignedUseForProduction.HasValue)
-            //{
-            //    //TODO: add the content type here
-            //    var publishFormUri = String.Format("{0}/api/v1/forms/{1},0x01006C3A1D644D3AED45AC37DDCD403CCFBE/assigneduse",
-            //        NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
-            //        Uri.EscapeUriString(list.Id.ToString()));
-            //    var content = "";
-            //    content = string.Format(@"{{""value"":""{0}""}}",
-            //        formModel.AssignedUseForProduction.Value ? "production" : "development");
-            //    // interesting, this can return 405 and in details ()puiblishResponse.Content.ReadAsStringAsync()
-            //    // in my case i had  a message saying "your license does not allow this" or something like this
-            //    HttpResponseMessage puiblishResponse = client.PutAsync(publishFormUri, 
-            //        new StringContent(content,null, "application/json")).Result;
-            //}
+            if (formModel.AssignedUseForProduction.HasValue)
+            {
+                //TODO: add the content type here
+                var publishFormUri = String.Format("{0}/api/v1/forms/{1},{2}/assigneduse",
+                    NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
+                    Uri.EscapeUriString(list.Id.ToString()),
+                    listContentType.Id.ToString());
+                var content = "";
+                content = string.Format(@"{{""value"":""{0}""}}",
+                    formModel.AssignedUseForProduction.Value ? "production" : "development");
+                // interesting, this can return 405 and in details ()puiblishResponse.Content.ReadAsStringAsync()
+                // in my case i had  a message saying "your license does not allow this" or something like this
+                result.assignedUseForProductionValue = client.PutAsync(publishFormUri,
+                    new StringContent(content, null, "application/json")).Result;
+            }
+
+            InvokeOnModelEvent(this, new ModelEventArgs
+            {
+                CurrentModelNode = null,
+                Model = null,
+                EventType = ModelEventType.OnProvisioned,
+                Object = result,
+                ObjectType = typeof(NintexFormO365HandlerOnProvisionedEvent),
+                ObjectDefinition = formModel,
+                ModelHost = modelHost
+            });
 
         }
 
