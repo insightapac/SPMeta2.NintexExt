@@ -17,6 +17,12 @@ There is a list of possible improvements down below.
 
 # revisions history
 
+
+## 0.0.3
+We have added a first version of Nintex for Office 365 forms. For now the content type is not supported yet and the form will be published to the default content type as 
+the API documentation and the samples that Nintex provide are rather blurry. Also keep in mind that you might encounter stragne errors - in our case we could not test the assigned use
+as apparently some licenses do not allow that.
+
 ## 0.0.2
 Fixed the csom references for the on-premise package (now we refer to 15.0.0.0 to be compatible with old SDKs)
 Note that the rerference to the CSOM package has been removed on purpose so you can use any sharepoint csom package as long as microsoft.sharepoint.client is at least 15.0.0.0
@@ -36,13 +42,15 @@ TODO: list of planned improvments/issies
 Try this code for better adfs integration
 https://github.com/SharePoint/PnP-Sites-Core/blob/master/Core/SAML authentication.md
 
-Add better support for the errors checkign after the request hsa been submitted, especially for the case of AD proxy.
+Add better support for the errors checkign after the request has been submitted, especially for the case of AD proxy.
 Add AD Proxy support.
-Add workflows.
+Add better authentication support. 
+done - Add workflows.
 Add site workflows.
 Add workflow schedules.
 
 
-Office 365 forms
-add support for all http responses storage 
-add calculation of the content type
+Office 365 
+Add support for list and site workflows 
+
+

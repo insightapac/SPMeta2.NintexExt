@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>SPMeta2.NintexExt.Core</id>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <authors>mbakirov</authors>
     <owners>mbakirov</owners>
     <licenseUrl>https://opensource.org/licenses/MS-PL</licenseUrl>
@@ -11,8 +11,9 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>This package is a core SPMeta2 extensions that addes definiions for Nintex Forms and Nintex Workflows</description>
     <releaseNotes>
-      Fixed the csom references for the on-premise package (now we refer to 15.0.0.0 to be compatible with old SDKs)
-      Added an initial ability to provision list workflows. As we had to separately call the nintex wcf service, for now only windows authentication is supported.
+      We have added a first version of Nintex for Office 365 forms. For now the content type is not supported yet and the form will be published to the default content type as
+      the API documentation and the samples that Nintex provide are rather blurry. Also keep in mind that you might encounter stragne errors - in our case we could not test the assigned use
+      as apparently some licenses do not allow that.
     </releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>SharePoint Nintex SPMeta2</tags>

@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>SPMeta2.NintexExt.CSOM.O365</id>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <authors>mbakirov</authors>
     <owners>mbakirov</owners>
     <licenseUrl>https://opensource.org/licenses/MS-PL</licenseUrl>
@@ -10,7 +10,11 @@
     <iconUrl>https://raw.githubusercontent.com/SubPointSolutions/spmeta2/dev/SPMeta2/SPMeta2.Dependencies/Images/SPMeta2_64_64.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>This package is an SPMeta2.NintexExt.Core implementation for on - premises SP13 CSOM</description>
-    <releaseNotes>Initial release, forms only and O365 only.</releaseNotes>
+    <releaseNotes>
+      We have added a first version of Nintex for Office 365 forms. For now the content type is not supported yet and the form will be published to the default content type as
+      the API documentation and the samples that Nintex provide are rather blurry. Also keep in mind that you might encounter stragne errors - in our case we could not test the assigned use
+      as apparently some licenses do not allow that.
+    </releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>SharePoint Nintex SPMeta2</tags>
     <dependencies>
