@@ -18,7 +18,7 @@
     <copyright>Copyright 2018</copyright>
     <tags>SharePoint Nintex SPMeta2</tags>
     <dependencies>
-      <dependency id="SPMeta2.NintexExt.Core" version="0.0.2" />
+      <dependency id="SPMeta2.NintexExt.Core" version="0.0.3" />
       <dependency id="SPMeta2.Core" version="1.2.90" />
       <dependency id="SPMeta2.CSOM.Foundation-v16" version="1.2.90" />
     </dependencies>
