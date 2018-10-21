@@ -23,11 +23,11 @@ using System.ServiceModel;
 
 namespace SPMeta2.NintexExt.CSOM.SP13.Handlers
 {
-    public class NintexListWorkflowHandlerBase : NintexWorkflowHandlerBase
+    public class NintexSiteWorkflowHandlerBase : NintexWorkflowHandlerBase
     {
         public override Type TargetType
         {
-            get { return typeof(NintexListWorkflowDefinition); }
+            get { return typeof(NintexWebWorkflowDefinition); }
         }
 
         public override void DeployModel(object modelHost, DefinitionBase model)

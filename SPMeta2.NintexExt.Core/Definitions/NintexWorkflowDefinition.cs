@@ -1,16 +1,10 @@
-﻿using SPMeta2.Definitions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SPMeta2.Attributes.Regression;
+﻿using SPMeta2.Attributes.Regression;
+using SPMeta2.Definitions;
 
 namespace SPMeta2.NintexExt.Core.Definitions
 {
-    public class NintexListWorkflowDefinition : DefinitionBase
+    public class NintexWorkflowDefinition : DefinitionBase
     {
-
         /// <summary>
         /// The display name of the workflow.
         /// </summary>
@@ -19,8 +13,7 @@ namespace SPMeta2.NintexExt.Core.Definitions
         [ExpectValidation]
         [ExpectRequired]
         public string Name { get; set; }
-
-
+        
         /// <summary>
         /// The binary content of the workflow.
         /// </summary>
@@ -29,6 +22,5 @@ namespace SPMeta2.NintexExt.Core.Definitions
         [ExpectValidation]
         [ExpectRequired]
         public string WorkflowXml { get; set; }
-
     }
 }

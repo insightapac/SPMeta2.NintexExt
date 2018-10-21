@@ -94,7 +94,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\NintexWebWorkflowHandler.cs" />
     <Compile Include="Handlers\NintexListWorkflowHandler.cs" />
+    <Compile Include="Handlers\NintexWorkflowHandlerBase.cs" />
     <Compile Include="Handlers\NintexFormHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
