@@ -105,7 +105,7 @@
     <Content Include="Files\SampleListWorkflow.nwf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Files\SampleSitetWorkflow.nwf">
+    <Content Include="Files\SampleWebWorkflow.nwf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />

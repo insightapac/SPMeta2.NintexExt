@@ -23,7 +23,7 @@ using System.ServiceModel;
 
 namespace SPMeta2.NintexExt.CSOM.SP13.Handlers
 {
-    public class NintexSiteWorkflowHandlerBase : NintexWorkflowHandlerBase
+    public class NintexWebWorkflowHandler : NintexWorkflowHandlerBase
     {
         public override Type TargetType
         {

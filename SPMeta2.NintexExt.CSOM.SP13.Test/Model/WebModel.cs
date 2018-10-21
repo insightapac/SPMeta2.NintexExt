@@ -139,7 +139,7 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Test.Model
         public static NintexWebWorkflowDefinition webWorkflow = new NintexWebWorkflowDefinition()
         {
             Name = "Newly Deployed Web Workflow",
-            WorkflowXml = System.IO.File.ReadAllText(@"Files\SampleSitetWorkflow", Encoding.UTF8)
+            WorkflowXml = System.IO.File.ReadAllText(@"Files\SampleWebWorkflow.nwf", Encoding.UTF8)
         };
 
     }

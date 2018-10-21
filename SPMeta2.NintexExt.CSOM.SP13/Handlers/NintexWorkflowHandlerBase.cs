@@ -46,7 +46,7 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Handlers
 
         public override void DeployModel(object modelHost, DefinitionBase model)
         {
-            NintexListWorkflowDefinition WorkflowModel = (NintexListWorkflowDefinition)model;
+            NintexWorkflowDefinition WorkflowModel = (NintexWorkflowDefinition)model;
             InvokeOnModelEvent(this, new ModelEventArgs
             {
                 CurrentModelNode = null,
@@ -71,7 +71,7 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Handlers
             var clientContext = baseModelHost.HostClientContext;
             string FormDigestValue = clientContext.GetFormDigestDirect().DigestValue;
 
-            var publishUrl = UrlUtility.CombineUrl(clientContext.Url, "/_vti_bin/NintexWorkflow/Workflow.asmx");
+            var publishUrl = UrlUtility.CombineUrl(web.Url, "/_vti_bin/NintexWorkflow/Workflow.asmx");
 
             // Create the binding as per the settings specified in the Nintex SDK
 
