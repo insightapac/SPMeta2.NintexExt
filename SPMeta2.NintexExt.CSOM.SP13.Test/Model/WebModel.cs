@@ -21,6 +21,22 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Test.Model
         {
             var webModel = SPMeta2Model.NewWebModel(web =>
             {
+                web.AddNintexWorkflow(webWorkflow, workflowModel =>
+
+                {
+                    workflowModel.OnProvisioning<Object>
+                        (spMetaCtx =>
+                        {
+                            Console.WriteLine("About to provision the workflow on the web");
+                        });
+                    workflowModel.OnProvisioned<Object>
+                        (spMetaCtx =>
+                        {
+                            Console.WriteLine("Provisioned the web workflow");
+                            Console.WriteLine("The result is {0}", spMetaCtx.Object);
+                        });
+                });
+
                 web.AddList(TestList, list =>
                 {
                     // this refers to SPMeta2.NintexExt.Core.Syntax.Default;
@@ -41,7 +57,8 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Test.Model
                     //list.AddDefinitionNode(form);
 
 
-                    list.AddNintexWorkflow(workflow, workflowModel =>
+                    list.AddNintexWorkflow(listWorkflow, workflowModel =>
+
                     {
                         workflowModel.OnProvisioning<Object>
                             (spMetaCtx =>
@@ -55,7 +72,6 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Test.Model
                                 Console.WriteLine("The result is {0}", spMetaCtx.Object);
                             });
                     });
-
 
                 });
                 // same here, same list, testing that it works when the list is already there
@@ -78,7 +94,7 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Test.Model
                     // if you do not use the syntax default, you can use the line below
                     //list.AddDefinitionNode(form);
 
-                    list.AddNintexWorkflow(workflow, workflowModel =>
+                    list.AddNintexWorkflow(listWorkflow, workflowModel =>
                     {
                         workflowModel.OnProvisioning<Object>
                             (spMetaCtx =>
@@ -114,10 +130,16 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Test.Model
             FormXml = System.IO.File.ReadAllText(@"Files\ItemForm.xml", Encoding.Unicode)
         };
 
-        public static NintexListWorkflowDefinition workflow = new NintexListWorkflowDefinition()
+        public static NintexListWorkflowDefinition listWorkflow = new NintexListWorkflowDefinition()
         {
             Name = "Newly Deployed Workflow",
             WorkflowXml = System.IO.File.ReadAllText(@"Files\SampleListWorkflow.nwf", Encoding.UTF8)
+        };
+
+        public static NintexWebWorkflowDefinition webWorkflow = new NintexWebWorkflowDefinition()
+        {
+            Name = "Newly Deployed Web Workflow",
+            WorkflowXml = System.IO.File.ReadAllText(@"Files\SampleSitetWorkflow", Encoding.UTF8)
         };
 
     }
