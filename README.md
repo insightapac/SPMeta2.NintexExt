@@ -17,6 +17,8 @@ There is a list of possible improvements down below.
 
 # revisions history
 
+## 0.0.4
+added support for site workflows on prem (sp13)
 
 ## 0.0.3
 We have added a first version of Nintex for Office 365 forms. For now the content type is not supported yet and the form will be published to the default content type as 
