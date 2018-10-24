@@ -11,9 +11,7 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>This package is a core SPMeta2 extensions that addes definiions for Nintex Forms and Nintex Workflows</description>
     <releaseNotes>
-      We have added a first version of Nintex for Office 365 forms. For now the content type is not supported yet and the form will be published to the default content type as
-      the API documentation and the samples that Nintex provide are rather blurry. Also keep in mind that you might encounter stragne errors - in our case we could not test the assigned use
-      as apparently some licenses do not allow that.
+      Added site workflows on prem.
     </releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>SharePoint Nintex SPMeta2</tags>

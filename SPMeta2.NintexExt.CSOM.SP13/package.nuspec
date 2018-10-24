@@ -11,11 +11,7 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>This package is an SPMeta2.NintexExt.Core implementation for on - premises SP13 CSOM</description>
     <releaseNotes>
-      no changes since 0.0.2, the package added for unification with other packages.
-      
-      Fixed the csom references for the on-premise package (now we refer to 15.0.0.0 to be compatible with old SDKs)
-      Added an initial ability to provision list workflows. As we had to separately call the nintex wcf service, for now only windows authentication is supported.
-      Note that the rerference to the CSOM package has been removed on purpose so you can use any sharepoint csom package as long as microsoft.sharepoint.client is at least 15.0.0.0
+      Added site workflows on prem.
     </releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>SharePoint Nintex SPMeta2</tags>
