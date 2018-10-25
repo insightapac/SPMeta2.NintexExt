@@ -50,6 +50,7 @@ Add better authentication support.
 done - Add workflows.
 Add site workflows.
 Add workflow schedules.
+Add https support. 
 
 
 Office 365 
