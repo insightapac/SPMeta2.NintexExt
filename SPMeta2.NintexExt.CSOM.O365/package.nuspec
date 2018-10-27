@@ -10,8 +10,7 @@
     <iconUrl>https://raw.githubusercontent.com/SubPointSolutions/spmeta2/dev/SPMeta2/SPMeta2.Dependencies/Images/SPMeta2_64_64.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>This package is an implementation for on - premises SP13 CSOM</description>
-    <releaseNotes>
-      Refactored to remove the core project. from now on the packages will be developed independently.
+    <releaseNotes>Refactored to remove the core project. from now on the packages will be developed independently.
     </releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>SharePoint Nintex SPMeta2</tags>
