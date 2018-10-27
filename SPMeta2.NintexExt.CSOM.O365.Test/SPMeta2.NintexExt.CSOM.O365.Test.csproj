@@ -106,10 +106,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SPMeta2.NintexExt.Core\SPMeta2.NintexExt.Core.csproj">
-      <Project>{37030e75-2082-45ab-8b88-8540ec56a8b4}</Project>
-      <Name>SPMeta2.NintexExt.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SPMeta2.NintexExt.CSOM.O365\SPMeta2.NintexExt.CSOM.O365.csproj">
       <Project>{68788fb4-8d43-4b56-9715-a6c841d4849d}</Project>
       <Name>SPMeta2.NintexExt.CSOM.O365</Name>

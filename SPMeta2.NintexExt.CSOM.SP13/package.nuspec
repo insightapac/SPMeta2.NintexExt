@@ -9,15 +9,14 @@
     <projectUrl>https://github.com/IgniaAustralia/SPMeta2.NintexExt</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/SubPointSolutions/spmeta2/dev/SPMeta2/SPMeta2.Dependencies/Images/SPMeta2_64_64.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <description>This package is an SPMeta2.NintexExt.Core implementation for on - premises SP13 CSOM</description>
+    <description>This package is an implementation for on - premises SP13 CSOM</description>
     <releaseNotes>
-      Added site workflows on prem.
+      Refactored to remove the core project. from now on the packages will be developed independently.
     </releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>SharePoint Nintex SPMeta2</tags>
     <dependencies>
       <dependency id="SPMeta2.Core" version="1.2.50" />
-      <dependency id="SPMeta2.NintexExt.Core" version="0.0.5" />
       <dependency id="SPMeta2.CSOM.Foundation" version="1.2.50" />
     </dependencies>
   </metadata>

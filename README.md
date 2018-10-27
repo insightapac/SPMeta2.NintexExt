@@ -18,7 +18,10 @@ There is a list of possible improvements down below.
 # revisions history
 
 ## 0.0.5
-refactoring, removed the SPMeta2.NintexExt.Core
+refactoring, removed the SPMeta2.NintexExt.Core project alltogether.
+
+namespaces are left in place 
+
 we do not plan for now to develop an SSOM version on premise,
 and the O365 obviously only gives us the CSOM version.
 

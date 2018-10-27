@@ -94,11 +94,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Definitions\NintexForm.cs" />
+    <Compile Include="Definitions\NintexListWorkflowDefintion.cs" />
+    <Compile Include="Definitions\NintexWebWorkflowDefinition.cs" />
+    <Compile Include="Definitions\NintexWorkflowDefinition.cs" />
     <Compile Include="Handlers\NintexWebWorkflowHandler.cs" />
     <Compile Include="Handlers\NintexListWorkflowHandler.cs" />
     <Compile Include="Handlers\NintexWorkflowHandlerBase.cs" />
     <Compile Include="Handlers\NintexFormHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Syntax.Default\NintexFormSyntax.cs" />
+    <Compile Include="Syntax.Default\NintexWorkflowSyntax.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -162,17 +168,13 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="package.nuspec" />
+    <None Include="package.nuspec">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Handlers\formatBad.txt" />
     <None Include="Handlers\formatGood.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SPMeta2.NintexExt.Core\SPMeta2.NintexExt.Core.csproj">
-      <Project>{37030E75-2082-45AB-8B88-8540EC56A8B4}</Project>
-      <Name>SPMeta2.NintexExt.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
@@ -195,5 +197,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
