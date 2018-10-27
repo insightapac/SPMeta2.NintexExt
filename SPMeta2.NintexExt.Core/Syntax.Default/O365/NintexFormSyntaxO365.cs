@@ -8,14 +8,8 @@ using System.Threading.Tasks;
 
 namespace SPMeta2.NintexExt.Core.Syntax.Default
 {
-    public static class NintexFormSyntax
+    public static class NintexFormSyntaxO365
     {
-        public static TModelNode AddNintexForm<TModelNode>(this TModelNode model, Definitions.NintexFormDefinition definition, 
-            Action<ModelNode> action = null) where TModelNode : ModelNode, IContentTypeLinkHostModelNode, new()
-        {
-            model.AddDefinitionNode(definition, action);
-            return model;
-        }
         public static TModelNode AddNintexFormO365<TModelNode>(this TModelNode model, Definitions.NintexFormO365Definition definition,
             Action<ModelNode> action = null) where TModelNode : ModelNode, IContentTypeLinkHostModelNode, new()
         {

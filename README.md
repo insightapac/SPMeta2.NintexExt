@@ -17,6 +17,14 @@ There is a list of possible improvements down below.
 
 # revisions history
 
+## 0.0.5
+refactoring, removed the SPMeta2.NintexExt.Core
+we do not plan for now to develop an SSOM version on premise,
+and the O365 obviously only gives us the CSOM version.
+
+Moreover, features and definitions are so different between on prem and O365 so it would make sense to move the definitions
+out of the core into the respective projects.
+
 ## 0.0.4
 added support for site workflows on prem (sp13)
 
