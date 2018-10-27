@@ -75,7 +75,7 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Handlers
 
             // Create the binding as per the settings specified in the Nintex SDK
 
-            var binding = new BasicHttpBinding
+            BasicHttpBinding binding = new BasicHttpBinding
             {               
 
                 Name = "NintexWorkflowWSSoap",
@@ -92,7 +92,7 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Handlers
                 MessageEncoding = WSMessageEncoding.Text,
                 TextEncoding = System.Text.Encoding.UTF8,
                 TransferMode = TransferMode.Buffered,
-                UseDefaultWebProxy = true,                
+                UseDefaultWebProxy = true,       
             };
 
             binding.ReaderQuotas.MaxDepth = 32;
@@ -101,7 +101,15 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Handlers
             binding.ReaderQuotas.MaxBytesPerRead = 4096;
             binding.ReaderQuotas.MaxNameTableCharCount = 16384;
 
-            binding.Security.Mode = BasicHttpSecurityMode.TransportCredentialOnly;
+            if (web.Url.ToLowerInvariant().StartsWith("https://"))
+            {
+                binding.Security.Mode = BasicHttpSecurityMode.Transport;
+            }
+            else
+            {
+                binding.Security.Mode = BasicHttpSecurityMode.TransportCredentialOnly;
+            }
+
             binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Ntlm; // TODO - is this unnecessarily constraining?
             binding.Security.Transport.ProxyCredentialType = HttpProxyCredentialType.None;
             binding.Security.Transport.Realm = "";

@@ -17,6 +17,12 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Test
         {
             using (ClientContext context = DH.NintexFormsSupport.Provisioning.Helpers.GetClientContext())
             {
+                context.Load(context.Web);
+                context.ExecuteQuery();
+                var title = context.Web.Title;
+                var url = context.Web.Url;
+
+
                 var service = new CSOMProvisionService();
                 service.RegisterModelHandlers(typeof(NintexFormHandler).Assembly);
 
