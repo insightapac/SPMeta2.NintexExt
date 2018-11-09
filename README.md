@@ -17,6 +17,11 @@ There is a list of possible improvements down below.
 
 # revisions history
 
+
+## 0.0.6 on prem
+added https support.
+
+
 ## 0.0.5
 refactoring, removed the SPMeta2.NintexExt.Core project alltogether.
 
