@@ -22,6 +22,8 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Test
                 var title = context.Web.Title;
                 var url = context.Web.Url;
 
+                Console.WriteLine("Connected to " + url);
+
 
                 var service = new CSOMProvisionService();
                 service.RegisterModelHandlers(typeof(NintexFormHandler).Assembly);
