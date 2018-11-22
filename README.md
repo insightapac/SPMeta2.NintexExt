@@ -17,6 +17,9 @@ There is a list of possible improvements down below.
 
 # revisions history
 
+## 0.0.7 both
+Added assembly signatures.
+
 
 ## 0.0.6 on prem
 added https support.

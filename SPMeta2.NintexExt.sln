@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		license.md = license.md
 		Links.md = Links.md
 		README.md = README.md
+		SPMeta2.snk = SPMeta2.snk
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPMeta2.NintexExt.CSOM.SP13", "SPMeta2.NintexExt.CSOM.SP13\SPMeta2.NintexExt.CSOM.SP13.csproj", "{4E417970-C7C2-478E-9DC1-8CA58BC50094}"
