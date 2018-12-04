@@ -99,6 +99,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Definitions\NintexListWorkflowO365Definition.cs" />
+    <Compile Include="Definitions\NintexWebWorkflowO365Definition.cs" />
+    <Compile Include="Definitions\NintexWorkflowO365DefinitionBase.cs" />
     <Compile Include="Definitions\NintexFormO365.cs" />
     <Compile Include="Handlers\NintexFormO365Handler.cs" />
     <Compile Include="Handlers\NintexFormO365HandlerOnProvisionedEvent.cs" />

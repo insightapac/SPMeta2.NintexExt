@@ -3,7 +3,7 @@ using SPMeta2.Definitions;
 
 namespace SPMeta2.NintexExt.Core.Definitions
 {
-    public class NintexWorkflowDefinition : DefinitionBase
+    public abstract class NintexWorkflowDefinition : DefinitionBase
     {
         /// <summary>
         /// The display name of the workflow.
