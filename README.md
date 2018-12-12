@@ -17,6 +17,10 @@ There is a list of possible improvements down below.
 
 # revisions history
 
+## 0.0.8 - NintexO365
+
+Added support for form content types. 
+
 ## 0.0.7 both
 Added assembly signatures.
 
