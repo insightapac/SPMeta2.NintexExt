@@ -21,6 +21,11 @@ There is a list of possible improvements down below.
 
 Added support for form content types. 
 
+
+## 0.0.8 - Onprem
+Workflows are now published via webrequestexecutor factory (thanks Mark for the contribution).
+ 
+
 ## 0.0.7 both
 Added assembly signatures.
 
