@@ -24,6 +24,8 @@ Added support for form content types.
 
 ## 0.0.8 - Onprem
 Workflows are now published via webrequestexecutor factory (thanks Mark for the contribution).
+This adds support for Kerberos and any other protocol you would make the clientcontex work with
+
  
 
 ## 0.0.7 both
