@@ -23,6 +23,7 @@ using System.ServiceModel;
 
 namespace SPMeta2.NintexExt.CSOM.SP13.Handlers
 {
+    //TODO: remove base
     public class NintexListWorkflowHandlerBase : NintexWorkflowHandlerBase
     {
         public override Type TargetType
