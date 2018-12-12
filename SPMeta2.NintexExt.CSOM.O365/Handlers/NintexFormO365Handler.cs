@@ -96,45 +96,34 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                 NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
                 Uri.EscapeUriString(list.Id.ToString()));
 
-            //TODO: figure out how to add content type in JSON
-            HttpContent saveContent = null;
-            //if (string.IsNullOrEmpty(formModel.ListContentTypeNameOrId))
+            if (!string.IsNullOrEmpty(formModel.ListContentTypeNameOrId))
             {
-                saveContent = new ByteArrayContent(formModel.FormData);
+                importFormUri = String.Format("{0}/api/v1/forms/{1},{2}",
+                    NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
+                    Uri.EscapeUriString(list.Id.ToString()),
+                    listContentType.StringId);
             }
-            //    else
-            //    {
-            //        var result = string.Format(@"{{
-            //            ""contentTypeId"":""{0}"",
-            //            ""listId"":""{1}"",
-            //            ""attachment"":{{
-            //                ""name"" : ""file.txt"",
-            //                ""fileName"" : ""file.txt"",
-            //                ""data"": ""{2}""
-            //            }}
-            //}}",
-            //            //                        ""mimeType"" : ""text/plain"",
 
-            //            formModel.ListContentTypeNameOrId,
-            //            Uri.EscapeUriString(list.Id.ToString("B").ToUpper()),
-            //            Convert.ToBase64String(formModel.FormData));
-            //        saveContent = new StringContent(result);
-            //    }
+            HttpContent saveContent = new ByteArrayContent(formModel.FormData);
             result.saveResponse = client.PutAsync(importFormUri, saveContent).Result;
 
             if (formModel.Publish)
             {
-                var publishFormUri = String.Format("{0}/api/v1/forms/{1}/publish",
+                //var publishFormUri = String.Format("{0}/api/v1/forms/{1}/publish",
+                //    NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
+                //    Uri.EscapeUriString(list.Id.ToString()));
+                var publishFormUri = String.Format("{0}/api/v1/forms/{1},{2}/publish",
                     NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
-                    Uri.EscapeUriString(list.Id.ToString()));
+                    Uri.EscapeUriString(list.Id.ToString()),
+                    listContentType.StringId);
                 var content = "";
-                if (!string.IsNullOrEmpty(formModel.ListContentTypeNameOrId))
-                {
-                    content = string.Format(@"{{""contentTypeId"":""{0}"",""listId"":""{1}""}}",
+                //if (!string.IsNullOrEmpty(formModel.ListContentTypeNameOrId))
+                //{
+                //    content = string.Format(@"{{""contentTypeId"":""{0}"",""listId"":""{1}""}}",
 
-                        formModel.ListContentTypeNameOrId,
-                        list.Id.ToString("B").ToUpper());
-                }
+                //        listContentType.StringId,
+                //        list.Id.ToString("B").ToUpper());
+                //}
                 result.puiblishResponse = client.PostAsync(publishFormUri, new StringContent(content)).Result;
             }
             if (formModel.AssignedUseForProduction.HasValue)

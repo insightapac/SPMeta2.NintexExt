@@ -104,7 +104,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
 
         public static NintexFormO365Definition form = new NintexFormO365Definition()
         {
-            ListContentTypeNameOrId = "Item",
+            ListContentTypeNameOrId = "Issue",
             FormData = System.IO.File.ReadAllBytes(@"Files\NintexForm.nfp"),
             Publish = true,
             AssignedUseForProduction = false
