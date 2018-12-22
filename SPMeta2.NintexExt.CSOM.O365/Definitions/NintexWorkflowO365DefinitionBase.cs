@@ -8,6 +8,7 @@ using SPMeta2.Attributes.Regression;
 
 namespace SPMeta2.NintexExt.Core.Definitions
 {
+    [Obsolete("not implemented yet",true)]
     public abstract class NintexWorkflowO365DefinitionBase : DefinitionBase
     {
         /// <summary>

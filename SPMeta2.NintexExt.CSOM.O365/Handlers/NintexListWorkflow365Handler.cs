@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace SPMeta2.NintexExt.CSOM.O365.Handlers
 {
+    [Obsolete("not implemented yet",true)]
     public class NintexListWorkflow365Handler : NintexWorkflow365HandlerBase
     {
         public override Type TargetType
