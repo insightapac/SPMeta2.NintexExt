@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace SPMeta2.NintexExt.CSOM.O365.Handlers
 {
-    [Obsolete("not implemented yet",true)]
     public abstract class NintexWorkflow365HandlerBase : CSOMModelHandlerBase
     {
         public override void DeployModel(object modelHost, DefinitionBase model)

@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace SPMeta2.NintexExt.Core.Syntax.Default
 {
-    [Obsolete("not implemented yet",true)]
     public static class NintexWorkflowSyntaxO365
     {
         public static TModelNode AddNintexWorkflowO365<TModelNode>(this TModelNode model, Definitions.NintexWebWorkflowO365Definition definition,
