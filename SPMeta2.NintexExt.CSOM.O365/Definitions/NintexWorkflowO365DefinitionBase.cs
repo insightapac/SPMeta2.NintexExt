@@ -10,6 +10,16 @@ namespace SPMeta2.NintexExt.Core.Definitions
 {
     public abstract class NintexWorkflowO365DefinitionBase : DefinitionBase
     {
+
+        /// <summary>
+        /// The if of the workflow that can be read from teh export file.
+        /// </summary>
+        [System.Runtime.Serialization.DataMemberAttribute]
+        [ExpectUpdate]
+        [ExpectValidation]
+        [ExpectRequired]
+        public string WorkflowId { get; set; }
+        
         /// <summary>
         /// The binary content of the workflow.
         /// </summary>

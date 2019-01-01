@@ -177,14 +177,16 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
         {
             WorkflowData = System.IO.File.ReadAllBytes(@"Files\ListWorkflow.nwp"),
             Publish = true,
-            AssignedUseForProduction = false
+            AssignedUseForProduction = false,
+            WorkflowId = "317caa78-8377-479d-a8ea-a04ceefb4bde"
         };
 
         public static NintexWebWorkflowO365Definition siteWorkflow = new NintexWebWorkflowO365Definition()
         {
             WorkflowData = System.IO.File.ReadAllBytes(@"Files\SiteWorkflow.nwp"),
             Publish = true,
-            AssignedUseForProduction = false
+            AssignedUseForProduction = false,
+            WorkflowId = "b3c00e47-2473-4ac4-9c12-5a2fc22bb80e"
         };
     }
 }
