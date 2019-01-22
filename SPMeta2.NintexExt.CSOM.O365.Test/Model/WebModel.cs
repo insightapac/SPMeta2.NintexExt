@@ -29,6 +29,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
                     // this refers to SPMeta2.NintexExt.Core.Syntax.Default;
                     list.AddNintexFormO365(form, formmodel =>
                     {
+                        #region Events
                         formmodel.OnProvisioning<Object>
                             (spMetaCtx =>
                             {
@@ -52,10 +53,12 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
                                     Console.WriteLine("The result of assigned use is {0}", result.assignedUseForProductionValue.Content.ReadAsStringAsync().Result);
                                 }
                             });
+                        #endregion
                     });
                 // if you do not use the syntax default, you can use the line below
                 //list.AddDefinitionNode(form);
                 list.AddNintexWorkflowO365(listWorkflow, listWorkflow => {
+                    #region Events
                     listWorkflow.OnProvisioning<Object>
                         (spMetaCtx =>
                         {
@@ -85,6 +88,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
                     //            Console.WriteLine("The result of assigned use is {0}", result.assignedUseForProductionValue.Content.ReadAsStringAsync().Result);
                     //        }
                     //    });
+                    #endregion
                 });
                 });
                 // same here, same list, testing that it works when the list is already there
@@ -93,6 +97,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
                     // this refers to SPMeta2.NintexExt.Core.Syntax.Default;
                     list.AddNintexFormO365(form, formmodel =>
                     {
+                        #region Events
                         formmodel.OnProvisioning<Object>
                             (spMetaCtx =>
                             {
@@ -116,10 +121,12 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
                                     Console.WriteLine("The result of assigned use is {0}", result.assignedUseForProductionValue.Content.ReadAsStringAsync().Result);
                                 }
                             });
+                        #endregion  
                     });
                     // if you do not use the syntax default, you can use the line below
                     //list.AddDefinitionNode(form);
                     list.AddNintexWorkflowO365(listWorkflow, listWorkflow => {
+                        #region Events
                         listWorkflow.OnProvisioning<Object>
                             (spMetaCtx =>
                             {
@@ -149,6 +156,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
                         //            Console.WriteLine("The result of assigned use is {0}", result.assignedUseForProductionValue.Content.ReadAsStringAsync().Result);
                         //        }
                         //    });
+                        #endregion
                     });
                 });
             });

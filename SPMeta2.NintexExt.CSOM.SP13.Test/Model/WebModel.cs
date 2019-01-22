@@ -22,8 +22,8 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Test.Model
             var webModel = SPMeta2Model.NewWebModel(web =>
             {
                 web.AddNintexWorkflow(webWorkflow, workflowModel =>
-
                 {
+                    #region Events
                     workflowModel.OnProvisioning<Object>
                         (spMetaCtx =>
                         {
@@ -35,12 +35,14 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Test.Model
                             Console.WriteLine("Provisioned the web workflow");
                             Console.WriteLine("The result is {0}", spMetaCtx.Object);
                         });
+                    #endregion
                 });
 
                 web.AddList(TestList, list =>
                 {
                     // this refers to SPMeta2.NintexExt.Core.Syntax.Default;
                     list.AddNintexForm(form, formmodel=> {
+                        #region Events
                         formmodel.OnProvisioning<Object>
                             (spMetaCtx =>
                             {
@@ -52,14 +54,14 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Test.Model
                                 Console.WriteLine("Provisoined the form for {0}",((NintexFormDefinition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
                                 Console.WriteLine("The result is {0}", spMetaCtx.Object);
                             });
+                        #endregion
                     });
                     // if you do not use the syntax default, you can use the line below
                     //list.AddDefinitionNode(form);
 
-
                     list.AddNintexWorkflow(listWorkflow, workflowModel =>
-
                     {
+                        #region Events
                         workflowModel.OnProvisioning<Object>
                             (spMetaCtx =>
                             {
@@ -71,6 +73,7 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Test.Model
                                 Console.WriteLine("Provisioned the workflow");
                                 Console.WriteLine("The result is {0}", spMetaCtx.Object);
                             });
+                        #endregion
                     });
 
                 });
@@ -79,6 +82,7 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Test.Model
                 {
                     // this refers to SPMeta2.NintexExt.Core.Syntax.Default;
                     list.AddNintexForm(form, formmodel => {
+                        #region Events
                         formmodel.OnProvisioning<Object>
                             (spMetaCtx =>
                             {
@@ -90,12 +94,14 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Test.Model
                                 Console.WriteLine("Provisoined the form for {0}", ((NintexFormDefinition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
                                 Console.WriteLine("The result is {0}", spMetaCtx.Object);
                             });
+                        #endregion
                     });
                     // if you do not use the syntax default, you can use the line below
                     //list.AddDefinitionNode(form);
 
                     list.AddNintexWorkflow(listWorkflow, workflowModel =>
                     {
+                        #region Events
                         workflowModel.OnProvisioning<Object>
                             (spMetaCtx =>
                             {
@@ -107,6 +113,7 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Test.Model
                                 Console.WriteLine("Provisioned the workflow");
                                 Console.WriteLine("The result is {0}", spMetaCtx.Object);
                             });
+                        #endregion
                     });
 
                 });
