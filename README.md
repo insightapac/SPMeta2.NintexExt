@@ -76,14 +76,20 @@ https://github.com/SharePoint/PnP-Sites-Core/blob/master/Core/SAML authenticatio
 
 Add better support for the errors checkign after the request has been submitted, especially for the case of AD proxy.
 Add AD Proxy support.
-Add better authentication support. 
 done - Add workflows.
-Add site workflows.
+done Add site workflows.
 Add workflow schedules.
-Add https support. 
+
 
 
 Office 365 
 Add support for list and site workflows 
 
 
+# Notes
+1) Nintex recently added an "Assigned Use" for workflows on premises. 
+   Unfortunately there is no API for this, so, based on the answer we got from support, 
+      the workflows are published "as production". 
+2) When requesting the API key for Office365, do not use "tenant-my" sites. Seems that you will be able to 
+However, if you already have a web service url for mysites (https://tenant-my.nintexo365.com) you can still use it as a web service url and work across your main site
+(https://tenant.sharepoint.com/...)

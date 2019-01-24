@@ -69,13 +69,12 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
 
 
 
-            var getFormUri1 = String.Format("{0}/api/v1/workflows/packages",
+            var getFormUri1 = String.Format("{0}/api/v1/workflows",
                 NintexFormApiKeys.WebServiceUrl.TrimEnd('/'));
-            var getFormUri2 = String.Format("{0}/api/v1/workflows/packages/",
-                NintexFormApiKeys.WebServiceUrl.TrimEnd('/'));
-
             var getResult1 = client.GetAsync(getFormUri1).Result;
-            var getResult2 = client.GetAsync(getFormUri2).Result;
+            var getResult1String = getResult1.Content.ReadAsStringAsync().Result;
+
+            var q = 1;
 
 
             //TODO: we need to find out how we can get the workflow ids from the target system.

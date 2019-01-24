@@ -55,41 +55,42 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
                             });
                         #endregion
                     });
-                // if you do not use the syntax default, you can use the line below
-                //list.AddDefinitionNode(form);
-                list.AddNintexWorkflowO365(listWorkflow, listWorkflow => {
-                    #region Events
-                    listWorkflow.OnProvisioning<Object>
-                        (spMetaCtx =>
-                        {
-                            Console.WriteLine("About to provision the workflow");
-                        });
-                    listWorkflow.OnProvisioned<Object>
-                        (spMetaCtx =>
-                        {
-                            Console.WriteLine("Provisoined the workflow");
-                        });
-                    //TODO:
-                    //listWorkflow.OnProvisioned<NintexFormO365HandlerOnProvisionedEvent>
-                    //    (spMetaCtx =>
-                    //    {
-                    //        Console.WriteLine("Provisoined the workflow m for {0}", ((NintexFormO365Definition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
-                    //        var result = spMetaCtx.Object;
-                    //        if (result.saveResponse != null)
-                    //        {
-                    //            Console.WriteLine("The result of save is {0}", result.saveResponse.Content.ReadAsStringAsync().Result);
-                    //        }
-                    //        if (result.puiblishResponse != null)
-                    //        {
-                    //            Console.WriteLine("The result of publish is {0}", result.puiblishResponse.Content.ReadAsStringAsync().Result);
-                    //        }
-                    //        if (result.assignedUseForProductionValue != null)
-                    //        {
-                    //            Console.WriteLine("The result of assigned use is {0}", result.assignedUseForProductionValue.Content.ReadAsStringAsync().Result);
-                    //        }
-                    //    });
-                    #endregion
-                });
+                    // if you do not use the syntax default, you can use the line below
+                    //list.AddDefinitionNode(form);
+                    list.AddNintexWorkflowO365(listWorkflow, listWorkflow =>
+                    {
+                        #region Events
+                        listWorkflow.OnProvisioning<Object>
+                            (spMetaCtx =>
+                            {
+                                Console.WriteLine("About to provision the workflow");
+                            });
+                        listWorkflow.OnProvisioned<Object>
+                            (spMetaCtx =>
+                            {
+                                Console.WriteLine("Provisoined the workflow");
+                            });
+                        //TODO:
+                        //listWorkflow.OnProvisioned<NintexFormO365HandlerOnProvisionedEvent>
+                        //    (spMetaCtx =>
+                        //    {
+                        //        Console.WriteLine("Provisoined the workflow m for {0}", ((NintexFormO365Definition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
+                        //        var result = spMetaCtx.Object;
+                        //        if (result.saveResponse != null)
+                        //        {
+                        //            Console.WriteLine("The result of save is {0}", result.saveResponse.Content.ReadAsStringAsync().Result);
+                        //        }
+                        //        if (result.puiblishResponse != null)
+                        //        {
+                        //            Console.WriteLine("The result of publish is {0}", result.puiblishResponse.Content.ReadAsStringAsync().Result);
+                        //        }
+                        //        if (result.assignedUseForProductionValue != null)
+                        //        {
+                        //            Console.WriteLine("The result of assigned use is {0}", result.assignedUseForProductionValue.Content.ReadAsStringAsync().Result);
+                        //        }
+                        //    });
+                        #endregion
+                    });
                 });
                 // same here, same list, testing that it works when the list is already there
                 web.AddHostList(TestList, list =>
@@ -125,39 +126,39 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
                     });
                     // if you do not use the syntax default, you can use the line below
                     //list.AddDefinitionNode(form);
-                    list.AddNintexWorkflowO365(listWorkflow, listWorkflow => {
-                        #region Events
-                        listWorkflow.OnProvisioning<Object>
-                            (spMetaCtx =>
-                            {
-                                Console.WriteLine("About to provision the workflow");
-                            });
-                        listWorkflow.OnProvisioned<Object>
-                            (spMetaCtx =>
-                            {
-                                Console.WriteLine("Provisoined the workflow");
-                            });
-                        //TODO:
-                        //listWorkflow.OnProvisioned<NintexFormO365HandlerOnProvisionedEvent>
-                        //    (spMetaCtx =>
-                        //    {
-                        //        Console.WriteLine("Provisoined the workflow m for {0}", ((NintexFormO365Definition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
-                        //        var result = spMetaCtx.Object;
-                        //        if (result.saveResponse != null)
-                        //        {
-                        //            Console.WriteLine("The result of save is {0}", result.saveResponse.Content.ReadAsStringAsync().Result);
-                        //        }
-                        //        if (result.puiblishResponse != null)
-                        //        {
-                        //            Console.WriteLine("The result of publish is {0}", result.puiblishResponse.Content.ReadAsStringAsync().Result);
-                        //        }
-                        //        if (result.assignedUseForProductionValue != null)
-                        //        {
-                        //            Console.WriteLine("The result of assigned use is {0}", result.assignedUseForProductionValue.Content.ReadAsStringAsync().Result);
-                        //        }
-                        //    });
-                        #endregion
-                    });
+                    //list.AddNintexWorkflowO365(listWorkflow, listWorkflow => {
+                    //    #region Events
+                    //    listWorkflow.OnProvisioning<Object>
+                    //        (spMetaCtx =>
+                    //        {
+                    //            Console.WriteLine("About to provision the workflow");
+                    //        });
+                    //    listWorkflow.OnProvisioned<Object>
+                    //        (spMetaCtx =>
+                    //        {
+                    //            Console.WriteLine("Provisoined the workflow");
+                    //        });
+                    //    //TODO:
+                    //    //listWorkflow.OnProvisioned<NintexFormO365HandlerOnProvisionedEvent>
+                    //    //    (spMetaCtx =>
+                    //    //    {
+                    //    //        Console.WriteLine("Provisoined the workflow m for {0}", ((NintexFormO365Definition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
+                    //    //        var result = spMetaCtx.Object;
+                    //    //        if (result.saveResponse != null)
+                    //    //        {
+                    //    //            Console.WriteLine("The result of save is {0}", result.saveResponse.Content.ReadAsStringAsync().Result);
+                    //    //        }
+                    //    //        if (result.puiblishResponse != null)
+                    //    //        {
+                    //    //            Console.WriteLine("The result of publish is {0}", result.puiblishResponse.Content.ReadAsStringAsync().Result);
+                    //    //        }
+                    //    //        if (result.assignedUseForProductionValue != null)
+                    //    //        {
+                    //    //            Console.WriteLine("The result of assigned use is {0}", result.assignedUseForProductionValue.Content.ReadAsStringAsync().Result);
+                    //    //        }
+                    //    //    });
+                    //    #endregion
+                    //});
                 });
             });
 
