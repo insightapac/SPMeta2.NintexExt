@@ -11,7 +11,7 @@ namespace SPMeta2.NintexExt.Core.Syntax.Default
     public static class NintexWorkflowSyntaxO365
     {
         public static TModelNode AddNintexWorkflowO365<TModelNode>(this TModelNode model, Definitions.NintexWebWorkflowO365Definition definition,
-            Action<ModelNode> action = null) where TModelNode : WebModelNode, IContentTypeLinkHostModelNode, new()
+            Action<ModelNode> action = null) where TModelNode : WebModelNode, new()
         {
             model.AddDefinitionNode(definition, action);
             return model;

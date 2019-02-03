@@ -23,6 +23,22 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
         {
             var webModel = SPMeta2Model.NewWebModel(web =>
             {
+                web.AddNintexWorkflowO365(webWorkflow, workflowModel =>
+                {
+                    #region Events
+                    workflowModel.OnProvisioning<Object>
+                        (spMetaCtx =>
+                        {
+                            Console.WriteLine("About to provision the workflow on the web");
+                        });
+                    workflowModel.OnProvisioned<Object>
+                        (spMetaCtx =>
+                        {
+                            Console.WriteLine("Provisioned the web workflow");
+                            Console.WriteLine("The result is {0}", spMetaCtx.Object);
+                        });
+                    #endregion
+                });
                 web.AddList(TestList, list =>
                 {
                     list.AddContentTypeLink(BuiltInContentTypeId.Issue);
@@ -63,12 +79,12 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
                         listWorkflow.OnProvisioning<Object>
                             (spMetaCtx =>
                             {
-                                Console.WriteLine("About to provision the workflow");
+                                Console.WriteLine("About to provision the list workflow");
                             });
                         listWorkflow.OnProvisioned<Object>
                             (spMetaCtx =>
                             {
-                                Console.WriteLine("Provisoined the workflow");
+                                Console.WriteLine("Provisoined the list workflow");
                             });
                         //TODO:
                         //listWorkflow.OnProvisioned<NintexFormO365HandlerOnProvisionedEvent>
@@ -132,12 +148,12 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
                         listWorkflow.OnProvisioning<Object>
                             (spMetaCtx =>
                             {
-                                Console.WriteLine("About to provision the workflow");
+                                Console.WriteLine("About to provision the list workflow");
                             });
                         listWorkflow.OnProvisioned<Object>
                             (spMetaCtx =>
                             {
-                                Console.WriteLine("Provisoined the workflow");
+                                Console.WriteLine("Provisoined the list workflow");
                             });
                         //TODO:
                         //listWorkflow.OnProvisioned<NintexFormO365HandlerOnProvisionedEvent>
@@ -188,15 +204,17 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
             WorkflowData = System.IO.File.ReadAllBytes(@"Files\ListWorkflow.nwp"),
             Publish = true,
             AssignedUseForProduction = false,
-            WorkflowId = "317caa78-8377-479d-a8ea-a04ceefb4bde"
+            Name = "List Workflow"
+            //WorkflowId = "317caa78-8377-479d-a8ea-a04ceefb4bde"
         };
 
-        public static NintexWebWorkflowO365Definition siteWorkflow = new NintexWebWorkflowO365Definition()
+        public static NintexWebWorkflowO365Definition webWorkflow = new NintexWebWorkflowO365Definition()
         {
             WorkflowData = System.IO.File.ReadAllBytes(@"Files\SiteWorkflow.nwp"),
             Publish = true,
             AssignedUseForProduction = false,
-            WorkflowId = "b3c00e47-2473-4ac4-9c12-5a2fc22bb80e"
+            Name = "Site Workflow",
+            //WorkflowId = "b3c00e47-2473-4ac4-9c12-5a2fc22bb80e"
         };
     }
 }

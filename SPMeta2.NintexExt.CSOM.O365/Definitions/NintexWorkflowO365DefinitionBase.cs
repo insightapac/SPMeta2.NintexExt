@@ -12,13 +12,22 @@ namespace SPMeta2.NintexExt.Core.Definitions
     {
 
         /// <summary>
-        /// The if of the workflow that can be read from teh export file.
+        /// The display name of the workflow.
         /// </summary>
         [System.Runtime.Serialization.DataMemberAttribute]
         [ExpectUpdate]
         [ExpectValidation]
         [ExpectRequired]
-        public string WorkflowId { get; set; }
+        public string Name { get; set; }
+
+        ///// <summary>
+        ///// The if of the workflow that can be read from the export file.
+        ///// </summary>
+        //[System.Runtime.Serialization.DataMemberAttribute]
+        //[ExpectUpdate]
+        //[ExpectValidation]
+        //[ExpectRequired]
+        //public string WorkflowId { get; set; }
         
         /// <summary>
         /// The binary content of the workflow.

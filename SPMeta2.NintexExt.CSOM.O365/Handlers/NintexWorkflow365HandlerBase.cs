@@ -1,4 +1,5 @@
 ﻿using Microsoft.SharePoint.Client;
+using Newtonsoft.Json.Linq;
 using SPMeta2.Common;
 using SPMeta2.CSOM.ModelHandlers;
 using SPMeta2.CSOM.ModelHosts;
@@ -73,24 +74,38 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                 NintexFormApiKeys.WebServiceUrl.TrimEnd('/'));
             var getResult1 = client.GetAsync(getFormUri1).Result;
             var getResult1String = getResult1.Content.ReadAsStringAsync().Result;
+            var parsedData = JObject.Parse(getResult1String);
 
-            var q = 1;
+            var workflowId = "";
 
+            // trying to find id by name
+            if (list!=null)
+            {
+                workflowId = (from d in (parsedData["data"] as JArray)
+                              where (d["workflowType"].Value<string>() == "List"
+                                   && d["name"].Value<string>() == workflowModel.Name
+                                   && d["listId"].Value<string>() == list.Id.ToString()
+                                   )
+                              select d["id"].Value<string>()).FirstOrDefault();
+            }
+            else
+            {
+                workflowId = (from d in (parsedData["data"] as JArray)
+                                       where (d["workflowType"].Value<string>() == "Site" 
+                                            && d["name"].Value<string>()==workflowModel.Name)
+                                       select d["id"].Value<string>()).FirstOrDefault();
+            }
 
-            //TODO: we need to find out how we can get the workflow ids from the target system.
-            var workflowId = workflowModel.WorkflowId;
 
             if (string.IsNullOrEmpty(workflowId))
             {
                 var importFormUri = String.Format("{0}/api/v1/workflows/packages/?migrate=true",
-                    NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
-                    Uri.EscapeUriString(workflowId));
+                    NintexFormApiKeys.WebServiceUrl.TrimEnd('/'));
 
                 if (list != null)
                 {
-                    importFormUri = String.Format("{0}/api/v1/workflows/packages/?migrate=true&listTitle={2}",
+                    importFormUri = String.Format("{0}/api/v1/workflows/packages/?migrate=true&listTitle={1}",
                         NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
-                        Uri.EscapeUriString(workflowId),
                         Uri.EscapeUriString(list.Title.ToString())
                         );
                 }
@@ -114,6 +129,8 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                 HttpContent saveContent = new ByteArrayContent(workflowModel.WorkflowData);
                 result.saveResponse = client.PutAsync(importFormUri, saveContent).Result;
             }
+
+            //TODO: assigned use for production
         }
     }
 }

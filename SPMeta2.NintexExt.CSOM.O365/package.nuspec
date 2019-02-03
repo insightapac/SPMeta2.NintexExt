@@ -16,6 +16,7 @@
     <dependencies>
       <dependency id="SPMeta2.Core" version="1.2.90" />
       <dependency id="SPMeta2.CSOM.Foundation-v16" version="1.2.90" />
+      <dependency id="Newtonsoft.Json" version="6.0.1" />
     </dependencies>
   </metadata>
 </package>
