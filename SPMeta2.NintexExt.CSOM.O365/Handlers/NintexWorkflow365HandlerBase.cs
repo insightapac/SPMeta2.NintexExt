@@ -21,7 +21,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
     {
         public override void DeployModel(object modelHost, DefinitionBase model)
         {
-            NintexFormO365HandlerOnProvisionedEvent result = new NintexFormO365HandlerOnProvisionedEvent();
+            NintexO365HandlerOnProvisionedEvent result = new NintexO365HandlerOnProvisionedEvent();
             NintexWorkflowO365DefinitionBase workflowModel = (NintexWorkflowO365DefinitionBase)model;
             //TODO: add some specifics?
             InvokeOnModelEvent(this, new ModelEventArgs
@@ -111,6 +111,8 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                 }
                 HttpContent saveContent = new ByteArrayContent(workflowModel.WorkflowData);
                 result.saveResponse = client.PostAsync(importFormUri, saveContent).Result;
+
+                //TODO: parse response to get the workflow id
             }
             else
             {
@@ -130,7 +132,42 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                 result.saveResponse = client.PutAsync(importFormUri, saveContent).Result;
             }
 
-            //TODO: assigned use for production
+
+            if (workflowModel.Publish)
+            {
+                var publishFormUri = String.Format("{0}/api/v1/workflows/{1}/published",
+                    NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
+                    Uri.EscapeUriString(workflowId));
+                var content = "";
+                result.puiblishResponse = client.PostAsync(publishFormUri, new StringContent(content)).Result;
+            }
+            if (workflowModel.AssignedUseForProduction.HasValue)
+            {
+                //TODO: add the content type here
+                var publishFormUri = String.Format("{0}/api/v1/workflows/{1}/assigneduse",
+                    NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
+                    Uri.EscapeUriString(workflowId));
+                var content = "";
+                content = string.Format(@"{{""value"":""{0}""}}",
+                    workflowModel.AssignedUseForProduction.Value ? "production" : "development");
+                // interesting, this can return 405 and in details ()puiblishResponse.Content.ReadAsStringAsync()
+                // in my case i had  a message saying "your license does not allow this" or something like this
+                result.assignedUseForProductionValue = client.PutAsync(publishFormUri,
+                    new StringContent(content, null, "application/json")).Result;
+            }
+
+            InvokeOnModelEvent(this, new ModelEventArgs
+            {
+                CurrentModelNode = null,
+                Model = null,
+                EventType = ModelEventType.OnProvisioned,
+                Object = result,
+                ObjectType = typeof(NintexO365HandlerOnProvisionedEvent),
+                ObjectDefinition = workflowModel,
+                ModelHost = modelHost
+            });
+
+
         }
     }
 }

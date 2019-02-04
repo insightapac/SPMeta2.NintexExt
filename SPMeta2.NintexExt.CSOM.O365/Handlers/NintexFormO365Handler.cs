@@ -26,7 +26,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
 
         public override void DeployModel(object modelHost, DefinitionBase model)
         {
-            NintexFormO365HandlerOnProvisionedEvent result = new NintexFormO365HandlerOnProvisionedEvent();
+            NintexO365HandlerOnProvisionedEvent result = new NintexO365HandlerOnProvisionedEvent();
             // we need to have list id and the sharepoint authentication cookie
             NintexFormO365Definition formModel = (NintexFormO365Definition)model;
             //TODO: add some specifics?
@@ -148,7 +148,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                 Model = null,
                 EventType = ModelEventType.OnProvisioned,
                 Object = result,
-                ObjectType = typeof(NintexFormO365HandlerOnProvisionedEvent),
+                ObjectType = typeof(NintexO365HandlerOnProvisionedEvent),
                 ObjectDefinition = formModel,
                 ModelHost = modelHost
             });

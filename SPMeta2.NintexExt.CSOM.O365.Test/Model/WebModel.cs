@@ -31,11 +31,23 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
                         {
                             Console.WriteLine("About to provision the workflow on the web");
                         });
-                    workflowModel.OnProvisioned<Object>
+                    workflowModel.OnProvisioned<NintexO365HandlerOnProvisionedEvent>
                         (spMetaCtx =>
                         {
-                            Console.WriteLine("Provisioned the web workflow");
-                            Console.WriteLine("The result is {0}", spMetaCtx.Object);
+                            Console.WriteLine("Provisoined the workflow m for {0}", ((NintexWebWorkflowO365Definition)spMetaCtx.ObjectDefinition).Name);
+                            var result = spMetaCtx.Object;
+                            if (result.saveResponse != null)
+                            {
+                                Console.WriteLine("The result of save is {0}", result.saveResponse.Content.ReadAsStringAsync().Result);
+                            }
+                            if (result.puiblishResponse != null)
+                            {
+                                Console.WriteLine("The result of publish is {0}", result.puiblishResponse.Content.ReadAsStringAsync().Result);
+                            }
+                            if (result.assignedUseForProductionValue != null)
+                            {
+                                Console.WriteLine("The result of assigned use is {0}", result.assignedUseForProductionValue.Content.ReadAsStringAsync().Result);
+                            }
                         });
                     #endregion
                 });
@@ -51,7 +63,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
                             {
                                 Console.WriteLine("About to provision the form for {0}", ((NintexFormO365Definition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
                             });
-                        formmodel.OnProvisioned<NintexFormO365HandlerOnProvisionedEvent>
+                        formmodel.OnProvisioned<NintexO365HandlerOnProvisionedEvent>
                             (spMetaCtx =>
                             {
                                 Console.WriteLine("Provisoined the form for {0}", ((NintexFormO365Definition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
@@ -120,7 +132,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
                             {
                                 Console.WriteLine("About to provision the form for {0}", ((NintexFormO365Definition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
                             });
-                        formmodel.OnProvisioned<NintexFormO365HandlerOnProvisionedEvent>
+                        formmodel.OnProvisioned<NintexO365HandlerOnProvisionedEvent>
                             (spMetaCtx =>
                             {
                                 Console.WriteLine("Provisoined the form for {0}", ((NintexFormO365Definition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
@@ -150,30 +162,24 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
                             {
                                 Console.WriteLine("About to provision the list workflow");
                             });
-                        listWorkflow.OnProvisioned<Object>
+                        listWorkflow.OnProvisioned<NintexO365HandlerOnProvisionedEvent>
                             (spMetaCtx =>
                             {
-                                Console.WriteLine("Provisoined the list workflow");
+                                Console.WriteLine("Provisoined the workflow m for {0}", ((NintexListWorkflowO365Definition)spMetaCtx.ObjectDefinition).Name);
+                                var result = spMetaCtx.Object;
+                                if (result.saveResponse != null)
+                                {
+                                    Console.WriteLine("The result of save is {0}", result.saveResponse.Content.ReadAsStringAsync().Result);
+                                }
+                                if (result.puiblishResponse != null)
+                                {
+                                    Console.WriteLine("The result of publish is {0}", result.puiblishResponse.Content.ReadAsStringAsync().Result);
+                                }
+                                if (result.assignedUseForProductionValue != null)
+                                {
+                                    Console.WriteLine("The result of assigned use is {0}", result.assignedUseForProductionValue.Content.ReadAsStringAsync().Result);
+                                }
                             });
-                        //TODO:
-                        //listWorkflow.OnProvisioned<NintexFormO365HandlerOnProvisionedEvent>
-                        //    (spMetaCtx =>
-                        //    {
-                        //        Console.WriteLine("Provisoined the workflow m for {0}", ((NintexFormO365Definition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
-                        //        var result = spMetaCtx.Object;
-                        //        if (result.saveResponse != null)
-                        //        {
-                        //            Console.WriteLine("The result of save is {0}", result.saveResponse.Content.ReadAsStringAsync().Result);
-                        //        }
-                        //        if (result.puiblishResponse != null)
-                        //        {
-                        //            Console.WriteLine("The result of publish is {0}", result.puiblishResponse.Content.ReadAsStringAsync().Result);
-                        //        }
-                        //        if (result.assignedUseForProductionValue != null)
-                        //        {
-                        //            Console.WriteLine("The result of assigned use is {0}", result.assignedUseForProductionValue.Content.ReadAsStringAsync().Result);
-                        //        }
-                        //    });
                         #endregion
                     });
                 });
@@ -187,7 +193,8 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
             TemplateType = BuiltInListTemplateTypeId.GenericList,
             CustomUrl = "Lists/Test",
             Title = "Test",
-            ContentTypesEnabled = true
+            ContentTypesEnabled = true,
+            OnQuickLaunch = true
         };
 
         public static NintexFormO365Definition form = new NintexFormO365Definition()
@@ -205,7 +212,6 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
             Publish = true,
             AssignedUseForProduction = false,
             Name = "List Workflow"
-            //WorkflowId = "317caa78-8377-479d-a8ea-a04ceefb4bde"
         };
 
         public static NintexWebWorkflowO365Definition webWorkflow = new NintexWebWorkflowO365Definition()
@@ -214,7 +220,6 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
             Publish = true,
             AssignedUseForProduction = false,
             Name = "Site Workflow",
-            //WorkflowId = "b3c00e47-2473-4ac4-9c12-5a2fc22bb80e"
         };
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SPMeta2.NintexExt.CSOM.O365.Handlers
 {
-    public class NintexFormO365HandlerOnProvisionedEvent
+    public class NintexO365HandlerOnProvisionedEvent
     {
         /// <summary>
         /// Saves the response of the call to save api
