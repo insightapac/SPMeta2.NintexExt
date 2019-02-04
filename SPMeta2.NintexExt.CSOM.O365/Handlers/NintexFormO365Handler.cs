@@ -29,7 +29,6 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
             NintexO365HandlerOnProvisionedEvent result = new NintexO365HandlerOnProvisionedEvent();
             // we need to have list id and the sharepoint authentication cookie
             NintexFormO365Definition formModel = (NintexFormO365Definition)model;
-            //TODO: add some specifics?
             InvokeOnModelEvent(this, new ModelEventArgs
             {
                 CurrentModelNode = null,
@@ -107,6 +106,20 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
             HttpContent saveContent = new ByteArrayContent(formModel.FormData);
             result.saveResponse = client.PutAsync(importFormUri, saveContent).Result;
 
+            if (formModel.AssignedUseForProduction.HasValue)
+            {
+                var publishFormUri = String.Format("{0}/api/v1/forms/{1},{2}/assigneduse",
+                    NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
+                    Uri.EscapeUriString(list.Id.ToString()),
+                    listContentType.Id.ToString());
+                var content = "";
+                content = string.Format(@"{{""value"":""{0}""}}",
+                    formModel.AssignedUseForProduction.Value ? "production" : "development");
+                // interesting, this can return 405 and in details ()puiblishResponse.Content.ReadAsStringAsync()
+                // in my case i had  a message saying "your license does not allow this" or something like this
+                result.assignedUseForProductionValue = client.PutAsync(publishFormUri,
+                    new StringContent(content, null, "application/json")).Result;
+            }
             if (formModel.Publish)
             {
                 //var publishFormUri = String.Format("{0}/api/v1/forms/{1}/publish",
@@ -126,21 +139,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                 //}
                 result.puiblishResponse = client.PostAsync(publishFormUri, new StringContent(content)).Result;
             }
-            if (formModel.AssignedUseForProduction.HasValue)
-            {
-                //TODO: add the content type here
-                var publishFormUri = String.Format("{0}/api/v1/forms/{1},{2}/assigneduse",
-                    NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
-                    Uri.EscapeUriString(list.Id.ToString()),
-                    listContentType.Id.ToString());
-                var content = "";
-                content = string.Format(@"{{""value"":""{0}""}}",
-                    formModel.AssignedUseForProduction.Value ? "production" : "development");
-                // interesting, this can return 405 and in details ()puiblishResponse.Content.ReadAsStringAsync()
-                // in my case i had  a message saying "your license does not allow this" or something like this
-                result.assignedUseForProductionValue = client.PutAsync(publishFormUri,
-                    new StringContent(content, null, "application/json")).Result;
-            }
+
 
             InvokeOnModelEvent(this, new ModelEventArgs
             {

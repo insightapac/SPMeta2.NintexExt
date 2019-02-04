@@ -10,7 +10,7 @@
     <iconUrl>https://raw.githubusercontent.com/SubPointSolutions/spmeta2/dev/SPMeta2/SPMeta2.Dependencies/Images/SPMeta2_64_64.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>This package is an implementation for Office 365</description>
-    <releaseNotes>TODO:.</releaseNotes>
+    <releaseNotes>Added support for list and site workflows in the office 365</releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>SharePoint Nintex SPMeta2</tags>
     <dependencies>

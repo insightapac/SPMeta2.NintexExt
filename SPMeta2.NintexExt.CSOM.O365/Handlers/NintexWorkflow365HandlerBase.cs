@@ -23,7 +23,6 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
         {
             NintexO365HandlerOnProvisionedEvent result = new NintexO365HandlerOnProvisionedEvent();
             NintexWorkflowO365DefinitionBase workflowModel = (NintexWorkflowO365DefinitionBase)model;
-            //TODO: add some specifics?
             InvokeOnModelEvent(this, new ModelEventArgs
             {
                 CurrentModelNode = null,
@@ -112,7 +111,9 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                 HttpContent saveContent = new ByteArrayContent(workflowModel.WorkflowData);
                 result.saveResponse = client.PostAsync(importFormUri, saveContent).Result;
 
-                //TODO: parse response to get the workflow id
+                var saveresult = result.saveResponse.Content.ReadAsStringAsync().Result;
+                var parsedSavedData = JObject.Parse(saveresult);
+                workflowId = parsedSavedData["id"].Value<string>();
             }
             else
             {
@@ -133,17 +134,8 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
             }
 
 
-            if (workflowModel.Publish)
-            {
-                var publishFormUri = String.Format("{0}/api/v1/workflows/{1}/published",
-                    NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
-                    Uri.EscapeUriString(workflowId));
-                var content = "";
-                result.puiblishResponse = client.PostAsync(publishFormUri, new StringContent(content)).Result;
-            }
             if (workflowModel.AssignedUseForProduction.HasValue)
             {
-                //TODO: add the content type here
                 var publishFormUri = String.Format("{0}/api/v1/workflows/{1}/assigneduse",
                     NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
                     Uri.EscapeUriString(workflowId));
@@ -154,6 +146,14 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                 // in my case i had  a message saying "your license does not allow this" or something like this
                 result.assignedUseForProductionValue = client.PutAsync(publishFormUri,
                     new StringContent(content, null, "application/json")).Result;
+            }
+            if (workflowModel.Publish)
+            {
+                var publishFormUri = String.Format("{0}/api/v1/workflows/{1}/published",
+                    NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
+                    Uri.EscapeUriString(workflowId));
+                var content = "";
+                result.puiblishResponse = client.PostAsync(publishFormUri, new StringContent(content)).Result;
             }
 
             InvokeOnModelEvent(this, new ModelEventArgs
