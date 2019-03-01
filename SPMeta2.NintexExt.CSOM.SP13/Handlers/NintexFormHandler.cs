@@ -92,6 +92,10 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Handlers
             DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(NintexFormSerialize));
             ser.WriteObject(requestStream, serializedObject);
             requestStream.Close();
+            //TODO:
+            // instead if using requestor.execute, run the following
+            // ClientRuntimeContext.SetupRequestCredential(m_context, m_webRequest);
+            //  this has to be done via reflection  context.FireExecutingWebRequestEvent(new WebRequestEventArgs(webrequestexecutor));
             executor.Execute();
             string result = "";
 
