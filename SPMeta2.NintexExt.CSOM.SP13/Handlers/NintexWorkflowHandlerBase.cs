@@ -75,6 +75,24 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Handlers
             executor.RequestHeaders.Add(HttpRequestHeader.AcceptEncoding, "gzip, deflate");
             executor.WebRequest.AutomaticDecompression = DecompressionMethods.GZip;
 
+            //TODO:
+            // instead if using requestor.execute, run the following
+            // ClientRuntimeContext.SetupRequestCredential(m_context, m_webRequest);
+            //
+            //var webrequestexecutor = context.WebRequestExecutorFactory.CreateWebRequestExecutor(context, url);
+            //HttpWebRequest request = webrequestexecutor.WebRequest;
+            //ClientRuntimeContext.SetupRequestCredential(context, request);
+            //var FireExecutingWebRequestEventInternalMethod = typeof(ClientContext).GetMethod("FireExecutingWebRequestEventInternal",
+            //          BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            //FireExecutingWebRequestEventInternalMethod.Invoke(context, new object[] { new WebRequestEventArgs(webrequestexecutor) });
+
+            //var result = "";
+            //var response = request.GetResponse();
+            //using (StreamReader sr = new StreamReader(response.GetResponseStream()))
+            //{
+            //    result = sr.ReadToEnd();
+            //}
+
             var requestStream = executor.GetRequestStream();
             using (var streamWriter = new StreamWriter(requestStream, Encoding.UTF8))
             {
