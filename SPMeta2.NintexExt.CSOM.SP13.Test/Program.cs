@@ -15,7 +15,7 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Test
         [STAThread]
         static void Main(string[] args)
         {
-            using (ClientContext context = DH.NintexFormsSupport.Provisioning.Helpers.GetClientContext())
+            using (ClientContext context = Support.Helpers.GetClientContext())
             {
                 context.Load(context.Web);
                 context.ExecuteQuery();
@@ -32,5 +32,6 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Test
                 //service.PreDeploymentServices.Add(new DefaultRequiredPropertiesValidationService());
             }
         }
+
     }
 }
