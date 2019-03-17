@@ -25,9 +25,16 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test
                 var username = ConfigurationManager.AppSettings.Get("sharePointUserName");
                 var password = ConfigurationManager.AppSettings.Get("sharePointPassword");
                 var securedPassword = new SecureString();
-                foreach (var c in password.ToCharArray())
+                if (string.IsNullOrEmpty(password))
                 {
-                    securedPassword.AppendChar(c);
+                    securedPassword = GetConsoleSecurePassword();
+                }
+                else
+                {
+                    foreach (var c in password.ToCharArray())
+                    {
+                        securedPassword.AppendChar(c);
+                    }
                 }
                 context.Credentials = new SharePointOnlineCredentials(username, securedPassword);
 
@@ -52,6 +59,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test
 
         private static SecureString GetConsoleSecurePassword()
         {
+            Console.WriteLine("Please enter the password");
             SecureString pwd = new SecureString();
             while (true)
             {
