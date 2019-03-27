@@ -11,10 +11,9 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>This package is an implementation for on - premises SP13 CSOM</description>
     <releaseNotes>
-      Workflows are now published via webrequestexecutor factory (thanks Mark for the contribution).
-      This adds support for Kerberos and any other protocol you would make the clientcontex work with
+      Added support (not tested but should be working) for  ad proxy and custom authentications.
     </releaseNotes>
-    <copyright>Copyright 2018</copyright>
+    <copyright>Copyright 2019</copyright>
     <tags>SharePoint Nintex SPMeta2</tags>
     <dependencies>
       <dependency id="SPMeta2.Core" version="1.2.50" />
