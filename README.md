@@ -17,6 +17,12 @@ There is a list of possible improvements down below.
 
 # revisions history
 
+## 0.0.9 - Onprem
+The authentication should work better in the scenarious when it is fired by the event (i.e. when you steal the cookies from form).
+this authentication is used in some other contexts as well at times.
+i had no chance to check it but i checked it does not break anything at least. 
+
+
 ## 0.0.9 - NintexO365
 
 Added support for list and site workflows. 
