@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Runtime.Serialization.Json;
 using SPMeta2.Common;
+using System.Reflection;
 
 namespace SPMeta2.NintexExt.CSOM.SP13.Handlers
 {
@@ -77,57 +78,56 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Handlers
 
             var publishUrl = UrlUtility.CombineUrl(clientContext.Url, "/_vti_bin/NintexFormsServices/NfRestService.svc/PublishFormXml");
 
-            var executor = clientContext.WebRequestExecutorFactory.CreateWebRequestExecutor(clientContext, publishUrl);
-            executor.RequestContentType = "application/json";
-            executor.RequestContentType = "application/json; charset=utf-8";
-
-            executor.RequestHeaders.Add("X-RequestDigest", formDigestValue);
-            //executor.RequestHeaders.Add(HttpRequestHeader.AcceptEncoding, "gzip, deflate");
-            //executor.RequestHeaders.Add(HttpRequestHeader.ContentEncoding, "utf-8");
-            executor.RequestMethod = "POST";
-
-            var serializedObject = NintexFormSerialize.FromDefinition(formModel, clientContext, web, list);
-
-            var requestStream = executor.GetRequestStream();
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(NintexFormSerialize));
-            ser.WriteObject(requestStream, serializedObject);
-            requestStream.Close();
-            //TODO:
-            // instead if using requestor.execute, run the following
-            // ClientRuntimeContext.SetupRequestCredential(m_context, m_webRequest);
-            //
-            //var webrequestexecutor = context.WebRequestExecutorFactory.CreateWebRequestExecutor(context, url);
-            //HttpWebRequest request = webrequestexecutor.WebRequest;
-            //ClientRuntimeContext.SetupRequestCredential(context, request);
-            //var FireExecutingWebRequestEventInternalMethod = typeof(ClientContext).GetMethod("FireExecutingWebRequestEventInternal",
-            //          BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            //FireExecutingWebRequestEventInternalMethod.Invoke(context, new object[] { new WebRequestEventArgs(webrequestexecutor) });
-
-            //var result = "";
-            //var response = request.GetResponse();
-            //using (StreamReader sr = new StreamReader(response.GetResponseStream()))
-            //{
-            //    result = sr.ReadToEnd();
-            //}
-
-            executor.Execute();
-            string result = "";
-
-            using (StreamReader sr = new StreamReader(executor.GetResponseStream()))
+            using (var webrequestexecutor = clientContext.WebRequestExecutorFactory.CreateWebRequestExecutor(clientContext, publishUrl))
             {
-                result = sr.ReadToEnd();
+                webrequestexecutor.RequestContentType = "application/json";
+                webrequestexecutor.RequestContentType = "application/json; charset=utf-8";
+
+                webrequestexecutor.RequestHeaders.Add("X-RequestDigest", formDigestValue);
+                //executor.RequestHeaders.Add(HttpRequestHeader.AcceptEncoding, "gzip, deflate");
+                //executor.RequestHeaders.Add(HttpRequestHeader.ContentEncoding, "utf-8");
+                webrequestexecutor.RequestMethod = "POST";
+
+                var serializedObject = NintexFormSerialize.FromDefinition(formModel, clientContext, web, list);
+
+
+                HttpWebRequest request = webrequestexecutor.WebRequest;
+                ClientRuntimeContext.SetupRequestCredential(clientContext, request);
+                var FireExecutingWebRequestEventInternalMethod = typeof(ClientContext).GetMethod("FireExecutingWebRequestEventInternal",
+                          BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                FireExecutingWebRequestEventInternalMethod.Invoke(clientContext, new object[] { new WebRequestEventArgs(webrequestexecutor) });
+
+                var requestStream = webrequestexecutor.GetRequestStream();
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(NintexFormSerialize));
+                ser.WriteObject(requestStream, serializedObject);
+                requestStream.Close();
+
+                var result = "";
+                var response = request.GetResponse();
+                using (StreamReader sr = new StreamReader(response.GetResponseStream()))
+                {
+                    result = sr.ReadToEnd();
+                }
+
+                //executor.Execute();
+                //string result = "";
+
+                //using (StreamReader sr = new StreamReader(executor.GetResponseStream()))
+                //{
+                //    result = sr.ReadToEnd();
+                //}
+
+                InvokeOnModelEvent(this, new ModelEventArgs
+                {
+                    CurrentModelNode = null,
+                    Model = null,
+                    EventType = ModelEventType.OnProvisioned,
+                    Object = result,
+                    ObjectType = typeof(string),
+                    ObjectDefinition = formModel,
+                    ModelHost = modelHost
+                });
             }
-
-            InvokeOnModelEvent(this, new ModelEventArgs
-            {
-                CurrentModelNode = null,
-                Model = null,
-                EventType = ModelEventType.OnProvisioned,
-                Object = result,
-                ObjectType = typeof(string),
-                ObjectDefinition = formModel,
-                ModelHost = modelHost
-            });
 
         }
     }

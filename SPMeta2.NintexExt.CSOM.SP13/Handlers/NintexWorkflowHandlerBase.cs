@@ -23,6 +23,7 @@ using SPMeta.NintexExt.CSOM.SP13.NintexWorkflowWS;
 using System.ServiceModel;
 using System.Xml;
 using System.Xml.Serialization;
+using System.Reflection;
 
 namespace SPMeta2.NintexExt.CSOM.SP13.Handlers
 {
@@ -67,54 +68,53 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Handlers
             var formDigestValue = clientContext.GetFormDigestDirect().DigestValue;
             var publishUrl = UrlUtility.CombineUrl(web.Url, "/_vti_bin/NintexWorkflow/Workflow.asmx");
 
-            var executor = clientContext.WebRequestExecutorFactory.CreateWebRequestExecutor(clientContext, publishUrl);
-            executor.RequestMethod = "POST";
-            executor.RequestContentType = "text/xml; charset=utf-8";
-            executor.RequestHeaders.Add("X-RequestDigest", formDigestValue);
-            executor.RequestHeaders.Add("SOAPAction", "\"http://nintex.com/PublishFromNWFXml\"");
-            executor.RequestHeaders.Add(HttpRequestHeader.AcceptEncoding, "gzip, deflate");
-            executor.WebRequest.AutomaticDecompression = DecompressionMethods.GZip;
-
-            //TODO:
-            // instead if using requestor.execute, run the following
-            // ClientRuntimeContext.SetupRequestCredential(m_context, m_webRequest);
-            //
-            //var webrequestexecutor = context.WebRequestExecutorFactory.CreateWebRequestExecutor(context, url);
-            //HttpWebRequest request = webrequestexecutor.WebRequest;
-            //ClientRuntimeContext.SetupRequestCredential(context, request);
-            //var FireExecutingWebRequestEventInternalMethod = typeof(ClientContext).GetMethod("FireExecutingWebRequestEventInternal",
-            //          BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            //FireExecutingWebRequestEventInternalMethod.Invoke(context, new object[] { new WebRequestEventArgs(webrequestexecutor) });
-
-            //var result = "";
-            //var response = request.GetResponse();
-            //using (StreamReader sr = new StreamReader(response.GetResponseStream()))
-            //{
-            //    result = sr.ReadToEnd();
-            //}
-
-            var requestStream = executor.GetRequestStream();
-            using (var streamWriter = new StreamWriter(requestStream, Encoding.UTF8))
+            using (var executor = clientContext.WebRequestExecutorFactory.CreateWebRequestExecutor(clientContext, publishUrl))
             {
-                var formatedString = BuildSoapRequest(list, WorkflowModel);
-                streamWriter.Write(formatedString);
+                executor.RequestMethod = "POST";
+                executor.RequestContentType = "text/xml; charset=utf-8";
+                executor.RequestHeaders.Add("X-RequestDigest", formDigestValue);
+                executor.RequestHeaders.Add("SOAPAction", "\"http://nintex.com/PublishFromNWFXml\"");
+                executor.RequestHeaders.Add(HttpRequestHeader.AcceptEncoding, "gzip, deflate");
+                executor.WebRequest.AutomaticDecompression = DecompressionMethods.GZip;
+
+                HttpWebRequest request = executor.WebRequest;
+                ClientRuntimeContext.SetupRequestCredential(clientContext, request);
+                var FireExecutingWebRequestEventInternalMethod = typeof(ClientContext).GetMethod("FireExecutingWebRequestEventInternal",
+                          BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                FireExecutingWebRequestEventInternalMethod.Invoke(clientContext, new object[] { new WebRequestEventArgs(executor) });
+
+                var requestStream = executor.GetRequestStream();
+                using (var streamWriter = new StreamWriter(requestStream, Encoding.UTF8))
+                {
+                    var formatedString = BuildSoapRequest(list, WorkflowModel);
+                    streamWriter.Write(formatedString);
+                }
+                requestStream.Close();
+
+                var result = "";
+                var response = request.GetResponse();
+                using (StreamReader sr = new StreamReader(response.GetResponseStream()))
+                {
+                    result = sr.ReadToEnd();
+                    result = ReadSoapResponse(result);
+                }
+
+
+                //executor.Execute();
+
+                //var result = ReadSoapResponse(executor);
+
+                InvokeOnModelEvent(this, new ModelEventArgs
+                {
+                    CurrentModelNode = null,
+                    Model = null,
+                    EventType = ModelEventType.OnProvisioned,
+                    Object = result,
+                    ObjectType = typeof(string),
+                    ObjectDefinition = WorkflowModel,
+                    ModelHost = modelHost
+                });
             }
-            requestStream.Close();
-
-            executor.Execute();
-
-            var result = ReadSoapResponse(executor);
-
-            InvokeOnModelEvent(this, new ModelEventArgs
-            {
-                CurrentModelNode = null,
-                Model = null,
-                EventType = ModelEventType.OnProvisioned,
-                Object = result,
-                ObjectType = typeof(string),
-                ObjectDefinition = WorkflowModel,
-                ModelHost = modelHost
-            });
         }
 
         private string BuildSoapRequest(List list, NintexWorkflowDefinition workflowModel)
@@ -135,6 +135,10 @@ namespace SPMeta2.NintexExt.CSOM.SP13.Handlers
             {
                 soapResponse = sr.ReadToEnd();
             }
+            return ReadSoapResponse(soapResponse);
+        }
+        private string ReadSoapResponse(string soapResponse)
+        {
             XmlDocument document = new XmlDocument();
             document.LoadXml(soapResponse);
             XmlNamespaceManager manager = new XmlNamespaceManager(document.NameTable);
