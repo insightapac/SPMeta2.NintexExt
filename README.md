@@ -1,5 +1,5 @@
 # Copyright
-This project is created by [Ignia](https://ignia.com.au). It is distributed under [Microsoft Public license](https://opensource.org/licenses/MS-PL)
+This project is created by [Insight APAC](http://au.insight.com) - formerly  [Ignia](https://ignia.com.au). It is distributed under [Microsoft Public license](https://opensource.org/licenses/MS-PL)
 
 # Introduction 
 This project is an extension to the SPMeta2 library. 
