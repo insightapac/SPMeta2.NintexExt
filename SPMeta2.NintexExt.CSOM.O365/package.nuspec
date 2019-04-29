@@ -6,12 +6,12 @@
     <authors>mbakirov</authors>
     <owners>mbakirov</owners>
     <licenseUrl>https://opensource.org/licenses/MS-PL</licenseUrl>
-    <projectUrl>https://github.com/IgniaAustralia/SPMeta2.NintexExt</projectUrl>
+    <projectUrl>https://github.com/insightapac/SPMeta2.NintexExt</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/SubPointSolutions/spmeta2/dev/SPMeta2/SPMeta2.Dependencies/Images/SPMeta2_64_64.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>This package is an implementation for Office 365</description>
     <releaseNotes>Added support for list and site workflows in the office 365</releaseNotes>
-    <copyright>Copyright 2018</copyright>
+    <copyright>Copyright 2019</copyright>
     <tags>SharePoint Nintex SPMeta2</tags>
     <dependencies>
       <dependency id="SPMeta2.Core" version="1.2.90" />

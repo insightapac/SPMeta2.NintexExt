@@ -6,7 +6,7 @@
     <authors>mbakirov</authors>
     <owners>mbakirov</owners>
     <licenseUrl>https://opensource.org/licenses/MS-PL</licenseUrl>
-    <projectUrl>https://github.com/IgniaAustralia/SPMeta2.NintexExt</projectUrl>
+    <projectUrl>https://github.com/insightapac/SPMeta2.NintexExt</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/SubPointSolutions/spmeta2/dev/SPMeta2/SPMeta2.Dependencies/Images/SPMeta2_64_64.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>This package is an implementation for on - premises SP13 CSOM</description>
