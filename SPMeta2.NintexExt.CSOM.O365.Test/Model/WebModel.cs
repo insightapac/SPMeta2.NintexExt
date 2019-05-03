@@ -183,6 +183,67 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
                         #endregion
                     });
                 });
+                web.AddList(TestList2, list =>
+                {
+                    list.AddContentTypeLink(BuiltInContentTypeId.Issue);
+                    // this refers to SPMeta2.NintexExt.Core.Syntax.Default;
+                    list.AddNintexFormO365(form2_item, formmodel =>
+                    {
+                        #region Events
+                        formmodel.OnProvisioning<Object>
+                            (spMetaCtx =>
+                            {
+                                Console.WriteLine("About to provision the form for {0}", ((NintexFormO365Definition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
+                            });
+                        formmodel.OnProvisioned<NintexO365HandlerOnProvisionedEvent>
+                            (spMetaCtx =>
+                            {
+                                Console.WriteLine("Provisoined the form for {0}", ((NintexFormO365Definition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
+                                var result = spMetaCtx.Object;
+                                if (result.saveResponse != null)
+                                {
+                                    Console.WriteLine("The result of save is {0}", result.saveResponse.Content.ReadAsStringAsync().Result);
+                                }
+                                if (result.puiblishResponse != null)
+                                {
+                                    Console.WriteLine("The result of publish is {0}", result.puiblishResponse.Content.ReadAsStringAsync().Result);
+                                }
+                                if (result.assignedUseForProductionValue != null)
+                                {
+                                    Console.WriteLine("The result of assigned use is {0}", result.assignedUseForProductionValue.Content.ReadAsStringAsync().Result);
+                                }
+                            });
+                        #endregion
+                    });
+                    list.AddNintexFormO365(form2_issue, formmodel =>
+                    {
+                        #region Events
+                        formmodel.OnProvisioning<Object>
+                            (spMetaCtx =>
+                            {
+                                Console.WriteLine("About to provision the form for {0}", ((NintexFormO365Definition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
+                            });
+                        formmodel.OnProvisioned<NintexO365HandlerOnProvisionedEvent>
+                            (spMetaCtx =>
+                            {
+                                Console.WriteLine("Provisoined the form for {0}", ((NintexFormO365Definition)spMetaCtx.ObjectDefinition).ListContentTypeNameOrId);
+                                var result = spMetaCtx.Object;
+                                if (result.saveResponse != null)
+                                {
+                                    Console.WriteLine("The result of save is {0}", result.saveResponse.Content.ReadAsStringAsync().Result);
+                                }
+                                if (result.puiblishResponse != null)
+                                {
+                                    Console.WriteLine("The result of publish is {0}", result.puiblishResponse.Content.ReadAsStringAsync().Result);
+                                }
+                                if (result.assignedUseForProductionValue != null)
+                                {
+                                    Console.WriteLine("The result of assigned use is {0}", result.assignedUseForProductionValue.Content.ReadAsStringAsync().Result);
+                                }
+                            });
+                        #endregion
+                    });
+                });
             });
 
             provisioningService.DeployWebModel(context, webModel);
@@ -196,11 +257,36 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
             ContentTypesEnabled = true,
             OnQuickLaunch = true
         };
+        /// <summary>
+        /// New list for testing lookups mapping
+        /// </summary>
+        public static ListDefinition TestList2 = new ListDefinition()
+        {
+            TemplateType = BuiltInListTemplateTypeId.GenericList,
+            CustomUrl = "Lists/Test2",
+            Title = "Test2",
+            ContentTypesEnabled = true,
+            OnQuickLaunch = true
+        };
 
         public static NintexFormO365Definition form = new NintexFormO365Definition()
         {
             ListContentTypeNameOrId = "Issue",
             FormData = System.IO.File.ReadAllBytes(@"Files\NintexForm.nfp"),
+            Publish = true,
+            AssignedUseForProduction = false
+        };
+        public static NintexFormO365Definition form2_item = new NintexFormO365Definition()
+        {
+            ListContentTypeNameOrId = "Item",
+            FormData = System.IO.File.ReadAllBytes(@"Files\NintexForm2_item.nfp"),
+            Publish = true,
+            AssignedUseForProduction = false
+        };
+        public static NintexFormO365Definition form2_issue = new NintexFormO365Definition()
+        {
+            ListContentTypeNameOrId = "Issue",
+            FormData = System.IO.File.ReadAllBytes(@"Files\NintexForm2_issue.nfp"),
             Publish = true,
             AssignedUseForProduction = false
         };
