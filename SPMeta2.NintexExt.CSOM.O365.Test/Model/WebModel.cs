@@ -243,6 +243,21 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
                             });
                         #endregion
                     });
+                    list.AddNintexWorkflowO365(listWorkflow2, listWorkflow =>
+                    {
+                        #region Events
+                        listWorkflow.OnProvisioning<Object>
+                            (spMetaCtx =>
+                            {
+                                Console.WriteLine("About to provision the list workflow 2");
+                            });
+                        listWorkflow.OnProvisioned<Object>
+                            (spMetaCtx =>
+                            {
+                                Console.WriteLine("Provisoined the list workflow 2");
+                            });
+                        #endregion
+                    });
                 });
             });
 
@@ -266,7 +281,10 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
             CustomUrl = "Lists/Test2",
             Title = "Test2",
             ContentTypesEnabled = true,
-            OnQuickLaunch = true
+            OnQuickLaunch = true,
+            EnableVersioning = true,
+            EnableMinorVersions = false,
+            EnableModeration = false
         };
 
         public static NintexFormO365Definition form = new NintexFormO365Definition()
@@ -298,6 +316,13 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test.Model
             Publish = true,
             AssignedUseForProduction = false,
             Name = "List Workflow"
+        };
+        public static NintexListWorkflowO365Definition listWorkflow2 = new NintexListWorkflowO365Definition()
+        {
+            WorkflowData = System.IO.File.ReadAllBytes(@"Files\ListWorkflow2.nwp"),
+            Publish = true,
+            AssignedUseForProduction = false,
+            Name = "List Workflow 2"
         };
 
         public static NintexWebWorkflowO365Definition webWorkflow = new NintexWebWorkflowO365Definition()
