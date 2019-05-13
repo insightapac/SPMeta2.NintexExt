@@ -120,7 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SPMeta2.NintexExt.CSOM.SP13\SPMeta2.NintexExt.CSOM.SP13.csproj">
-      <Project>{4E417970-C7C2-478E-9DC1-8CA58BC50094}</Project>
+      <Project>{4e417970-c7c2-478e-9dc1-8ca58bc50094}</Project>
       <Name>SPMeta2.NintexExt.CSOM.SP13</Name>
     </ProjectReference>
   </ItemGroup>

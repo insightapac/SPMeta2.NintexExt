@@ -1,12 +1,12 @@
 ﻿using Microsoft.SharePoint.Client;
-using SPMeta2.NintexExt.Core.Definitions;
 using SPMeta2.CSOM.Services;
 using SPMeta2.Definitions;
 using SPMeta2.Enumerations;
+using SPMeta2.NintexExt.Core.Definitions;
+using SPMeta2.NintexExt.Core.Syntax.Default;
 using SPMeta2.Syntax.Default;
 using SPMeta2.Syntax.Default.Modern;
 using SPMeta2.Syntax.Default.Utils;
-using SPMeta2.NintexExt.Core.Syntax.Default;
 using System;
 using System.Collections.Generic;
 using System.Linq;
