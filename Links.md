@@ -1,7 +1,6 @@
 on prem 2013 sdk
 
-https://help.nintex.com/en-US/sdks/sdk2013/#FormSDK/Topics/SDK_NF_API_REF_PublishFormXml.htm%3FTocPath%3DNintex%2520Software%2520Development%2520Kit%7CNintex%2520Forms%25202013%2520Software%2520Development%2520Kit%7CNintex%2520Forms%25202013%2520SDK%2520Reference%7CWeb%2520Services%2520Reference%7C_____4
-
+https://help.nintex.com/en-US/sdks/sdk2013/
 
 O365  sdk
 https://help.nintex.com/en-US/sdks/sdko365/
