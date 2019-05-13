@@ -100,7 +100,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Definitions\NintexForm.cs" />
+    <Compile Include="Definitions\NintexFormDefinition.cs" />
     <Compile Include="Definitions\NintexListWorkflowDefintion.cs" />
     <Compile Include="Definitions\NintexWebWorkflowDefinition.cs" />
     <Compile Include="Definitions\NintexWorkflowDefinition.cs" />
