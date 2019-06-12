@@ -71,11 +71,12 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
 
             // Create a new HTTP client and configure its base address.
             HttpClient client = new HttpClient();
+            client.Timeout = NintexFormSettings.HttpRequestTimeout;
             client.BaseAddress = new Uri(spSiteUrl);
             // Add common request headers for the REST API to the HTTP client.
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Add("Api-Key", NintexFormApiKeys.ApiKey);
+            client.DefaultRequestHeaders.Add("Api-Key", NintexFormSettings.ApiKey);
 
             string spoCookie = clientCredentials.GetAuthenticationCookie(new Uri(spSiteUrl));
             spoCookie.WithAssert("spoCookie", value => value.RequireStringNotOrEmpty());
@@ -92,13 +93,13 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
             client.DefaultRequestHeaders.Authorization = authHeader;
 
             var importFormUri = String.Format("{0}/api/v1/forms/{1}",
-                NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
+                NintexFormSettings.WebServiceUrl.TrimEnd('/'),
                 Uri.EscapeUriString(list.Id.ToString()));
 
             if (!string.IsNullOrEmpty(formModel.ListContentTypeNameOrId))
             {
                 importFormUri = String.Format("{0}/api/v1/forms/{1},{2}",
-                    NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
+                    NintexFormSettings.WebServiceUrl.TrimEnd('/'),
                     Uri.EscapeUriString(list.Id.ToString()),
                     listContentType.StringId);
             }
@@ -109,7 +110,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
             if (formModel.AssignedUseForProduction.HasValue)
             {
                 var publishFormUri = String.Format("{0}/api/v1/forms/{1},{2}/assigneduse",
-                    NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
+                    NintexFormSettings.WebServiceUrl.TrimEnd('/'),
                     Uri.EscapeUriString(list.Id.ToString()),
                     listContentType.Id.ToString());
                 var content = "";
@@ -126,7 +127,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                 //    NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
                 //    Uri.EscapeUriString(list.Id.ToString()));
                 var publishFormUri = String.Format("{0}/api/v1/forms/{1},{2}/publish",
-                    NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
+                    NintexFormSettings.WebServiceUrl.TrimEnd('/'),
                     Uri.EscapeUriString(list.Id.ToString()),
                     listContentType.StringId);
                 var content = "";

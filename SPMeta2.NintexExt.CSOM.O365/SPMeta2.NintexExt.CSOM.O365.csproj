@@ -112,7 +112,7 @@
     <Compile Include="Handlers\NintexWebWorkflow365Handler.cs" />
     <Compile Include="Handlers\NintexWorkflow365HandlerBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\NintexFormApiKeys.cs" />
+    <Compile Include="Services\NintexFormSettings.cs" />
     <Compile Include="Syntax.Default\NintexWorkflowSyntaxO365.cs" />
     <Compile Include="Syntax.Default\NintexFormSyntaxO365.cs" />
   </ItemGroup>

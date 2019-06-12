@@ -47,11 +47,12 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
 
             // Create a new HTTP client and configure its base address.
             HttpClient client = new HttpClient();
+            client.Timeout = NintexFormSettings.HttpRequestTimeout;
             client.BaseAddress = new Uri(spSiteUrl);
             // Add common request headers for the REST API to the HTTP client.
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Add("Api-Key", NintexFormApiKeys.ApiKey);
+            client.DefaultRequestHeaders.Add("Api-Key", NintexFormSettings.ApiKey);
 
             string spoCookie = clientCredentials.GetAuthenticationCookie(new Uri(spSiteUrl));
             spoCookie.WithAssert("spoCookie", value => value.RequireStringNotOrEmpty());
@@ -70,7 +71,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
 
 
             var getFormUri1 = String.Format("{0}/api/v1/workflows",
-                NintexFormApiKeys.WebServiceUrl.TrimEnd('/'));
+                NintexFormSettings.WebServiceUrl.TrimEnd('/'));
             var getResult1 = client.GetAsync(getFormUri1).Result;
             var getResult1String = getResult1.Content.ReadAsStringAsync().Result;
             var parsedData = JObject.Parse(getResult1String);
@@ -99,12 +100,12 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
             if (string.IsNullOrEmpty(workflowId))
             {
                 var importFormUri = String.Format("{0}/api/v1/workflows/packages/?migrate=true",
-                    NintexFormApiKeys.WebServiceUrl.TrimEnd('/'));
+                    NintexFormSettings.WebServiceUrl.TrimEnd('/'));
 
                 if (list != null)
                 {
                     importFormUri = String.Format("{0}/api/v1/workflows/packages/?migrate=true&listTitle={1}",
-                        NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
+                        NintexFormSettings.WebServiceUrl.TrimEnd('/'),
                         Uri.EscapeUriString(list.Title.ToString())
                         );
                 }
@@ -119,12 +120,12 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
             {
 
                 var importFormUri = String.Format("{0}/api/v1/workflows/packages/{1}/?migrate=true",
-                    NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
+                    NintexFormSettings.WebServiceUrl.TrimEnd('/'),
                     Uri.EscapeUriString(workflowId));
                 if (list != null)
                 {
                     importFormUri = String.Format("{0}/api/v1/workflows/packages/{1}/?migrate=true&listTitle={2}",
-                        NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
+                        NintexFormSettings.WebServiceUrl.TrimEnd('/'),
                         Uri.EscapeUriString(workflowId),
                         Uri.EscapeUriString(list.Title.ToString())
                         );
@@ -137,7 +138,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
             if (workflowModel.AssignedUseForProduction.HasValue)
             {
                 var publishFormUri = String.Format("{0}/api/v1/workflows/{1}/assigneduse",
-                    NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
+                    NintexFormSettings.WebServiceUrl.TrimEnd('/'),
                     Uri.EscapeUriString(workflowId));
                 var content = "";
                 content = string.Format(@"{{""value"":""{0}""}}",
@@ -150,7 +151,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
             if (workflowModel.Publish)
             {
                 var publishFormUri = String.Format("{0}/api/v1/workflows/{1}/published",
-                    NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
+                    NintexFormSettings.WebServiceUrl.TrimEnd('/'),
                     Uri.EscapeUriString(workflowId));
                 var content = "";
                 result.puiblishResponse = client.PostAsync(publishFormUri, new StringContent(content)).Result;
