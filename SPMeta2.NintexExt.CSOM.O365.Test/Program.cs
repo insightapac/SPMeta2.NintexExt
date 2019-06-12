@@ -40,7 +40,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test
 
                 NintexApiSettings.ApiKey = ConfigurationManager.AppSettings.Get("nintexApiKey");
                 NintexApiSettings.WebServiceUrl = ConfigurationManager.AppSettings.Get("nintexServiceUrl");
-                NintexApiSettings.HttpRequestTimeout = TimeSpan.FromSeconds(1);
+                NintexApiSettings.HttpRequestTimeout = TimeSpan.FromMinutes(4);
 
                 context.Load(context.Web, x=>x.Title, x=>x.Url);
                 context.ExecuteQuery();

@@ -20,7 +20,7 @@ There is a list of possible improvements down below.
 ## 0.0.10 - NintexO365
 
 Added support for http client timeout setting.
-also ninteformapikeys is now renamed to nintexformsettings
+NinteFormsApikeys is now renamed to NintexApiSettings
 
 
 ## 0.0.9 - Onprem

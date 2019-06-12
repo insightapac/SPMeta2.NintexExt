@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace SPMeta2.NintexExt.CSOM.O365.Services
 {
 
-    [Obsolete("Use NintexFormSettings")]
+    [Obsolete("Use NintexApiSettings")]
     public class NintexFormApiKeys
     {
         public static string ApiKey
@@ -33,7 +33,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Services
         public static string ApiKey;
 
         /// <summary>
-        /// The api key for the nintex operations
+        /// The web service url for the nintex operations
         /// </summary>
         /// <see cref="https://help.nintex.com/en-US/sdks/sdko365/#FormSDK/Topics/SDK_NFO_PRC__REST_QSG.htm#Get_your_API_key"/>
         [ThreadStatic]
@@ -41,9 +41,8 @@ namespace SPMeta2.NintexExt.CSOM.O365.Services
         //TODO: calculate the url if not specified
 
         /// <summary>
-        /// The api key for the nintex operations
+        /// The timeout for HttpClient.Timeout that is used in the implementation
         /// </summary>
-        /// <see cref="https://help.nintex.com/en-US/sdks/sdko365/#FormSDK/Topics/SDK_NFO_PRC__REST_QSG.htm#Get_your_API_key"/>
         [ThreadStatic]
         public static TimeSpan HttpRequestTimeout = TimeSpan.FromMinutes(3);
     }
