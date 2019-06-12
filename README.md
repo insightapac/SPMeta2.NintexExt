@@ -17,6 +17,12 @@ There is a list of possible improvements down below.
 
 # revisions history
 
+## 0.0.10 - NintexO365
+
+Added support for http client timeout setting.
+also ninteformapikeys is now renamed to nintexformsettings
+
+
 ## 0.0.9 - Onprem
 The authentication should work better in the scenarious when it is fired by the event (i.e. when you steal the cookies from form).
 this authentication is used in some other contexts as well at times.

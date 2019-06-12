@@ -13,17 +13,17 @@ namespace SPMeta2.NintexExt.CSOM.O365.Services
     {
         public static string ApiKey
         {
-            get { return NintexFormSettings.ApiKey; }
-            set { NintexFormSettings.ApiKey = value; }
+            get { return NintexApiSettings.ApiKey; }
+            set { NintexApiSettings.ApiKey = value; }
         }
         public static string WebServiceUrl
         {
-            get { return NintexFormSettings.WebServiceUrl; }
-            set { NintexFormSettings.WebServiceUrl = value; }
+            get { return NintexApiSettings.WebServiceUrl; }
+            set { NintexApiSettings.WebServiceUrl = value; }
         }
     }
 
-    public class NintexFormSettings
+    public class NintexApiSettings
     {
         /// <summary>
         /// The api key for the nintex operations

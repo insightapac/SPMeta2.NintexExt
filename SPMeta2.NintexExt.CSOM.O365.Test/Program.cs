@@ -38,8 +38,9 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test
                 }
                 context.Credentials = new SharePointOnlineCredentials(username, securedPassword);
 
-                NintexFormSettings.ApiKey = ConfigurationManager.AppSettings.Get("nintexApiKey");
-                NintexFormSettings.WebServiceUrl = ConfigurationManager.AppSettings.Get("nintexServiceUrl");
+                NintexApiSettings.ApiKey = ConfigurationManager.AppSettings.Get("nintexApiKey");
+                NintexApiSettings.WebServiceUrl = ConfigurationManager.AppSettings.Get("nintexServiceUrl");
+                NintexApiSettings.HttpRequestTimeout = TimeSpan.FromSeconds(1);
 
                 context.Load(context.Web, x=>x.Title, x=>x.Url);
                 context.ExecuteQuery();
