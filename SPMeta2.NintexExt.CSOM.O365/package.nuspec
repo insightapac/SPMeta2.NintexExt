@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>SPMeta2.NintexExt.CSOM.O365</id>
-    <version>0.0.10</version>
+    <version>0.0.11</version>
     <authors>mbakirov</authors>
     <owners>mbakirov</owners>
     <licenseUrl>https://opensource.org/licenses/MS-PL</licenseUrl>
@@ -12,7 +12,8 @@
     <description>This package is an implementation for Office 365</description>
     <releaseNotes>
       Added support for http client timeout setting.
-      NinteFormsApikeys is now renamed to NintexApiSettings
+      NintexFormsApikeys is now renamed to NintexApiSettings
+      removed the threadstatic from NintexApiSettings  as it works a bit unpredictably
     </releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>SharePoint Nintex SPMeta2</tags>
