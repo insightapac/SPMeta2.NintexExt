@@ -10,10 +10,7 @@
     <iconUrl>https://raw.githubusercontent.com/SubPointSolutions/spmeta2/dev/SPMeta2/SPMeta2.Dependencies/Images/SPMeta2_64_64.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>This package is an implementation for Office 365</description>
-    <releaseNotes>
-      Added support for http client timeout setting.
-      NintexFormsApikeys is now renamed to NintexApiSettings
-      removed the threadstatic from NintexApiSettings  as it works a bit unpredictably
+    <releaseNotes>      Revised some logic for nintex forms assigneduse for production.
     </releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>SharePoint Nintex SPMeta2</tags>
