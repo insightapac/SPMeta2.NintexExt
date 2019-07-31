@@ -107,21 +107,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
             HttpContent saveContent = new ByteArrayContent(formModel.FormData);
             result.saveResponse = client.PutAsync(importFormUri, saveContent).Result;
 
-            if (formModel.AssignedUseForProduction.HasValue)
-            {
-                var publishFormUri = String.Format("{0}/api/v1/forms/{1},{2}/assigneduse",
-                    NintexApiSettings.WebServiceUrl.TrimEnd('/'),
-                    Uri.EscapeUriString(list.Id.ToString()),
-                    listContentType.Id.ToString());
-                var content = "";
-                content = string.Format(@"{{""value"":""{0}""}}",
-                    formModel.AssignedUseForProduction.Value ? "production" : "development");
-                // interesting, this can return 405 and in details ()puiblishResponse.Content.ReadAsStringAsync()
-                // in my case i had  a message saying "your license does not allow this" or something like this
-                result.assignedUseForProductionValue = client.PutAsync(publishFormUri,
-                    new StringContent(content, null, "application/json")).Result;
-            }
-            if (formModel.Publish)
+            if (formModel.Publish || formModel.AssignedUseForProduction.HasValue)
             {
                 //var publishFormUri = String.Format("{0}/api/v1/forms/{1}/publish",
                 //    NintexFormApiKeys.WebServiceUrl.TrimEnd('/'),
@@ -140,6 +126,21 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                 //}
                 result.puiblishResponse = client.PostAsync(publishFormUri, new StringContent(content)).Result;
             }
+            if (formModel.AssignedUseForProduction.HasValue)
+            {
+                var publishFormUri = String.Format("{0}/api/v1/forms/{1},{2}/assigneduse",
+                    NintexApiSettings.WebServiceUrl.TrimEnd('/'),
+                    Uri.EscapeUriString(list.Id.ToString()),
+                    listContentType.Id.ToString());
+                var content = "";
+                content = string.Format(@"{{""value"":""{0}""}}",
+                    formModel.AssignedUseForProduction.Value ? "production" : "development");
+                // interesting, this can return 405 and in details ()puiblishResponse.Content.ReadAsStringAsync()
+                // in my case i had  a message saying "your license does not allow this" or something like this
+                result.assignedUseForProductionValue = client.PutAsync(publishFormUri,
+                    new StringContent(content, null, "application/json")).Result;
+            }
+
 
 
             InvokeOnModelEvent(this, new ModelEventArgs

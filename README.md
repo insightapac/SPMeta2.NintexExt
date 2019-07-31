@@ -17,6 +17,10 @@ There is a list of possible improvements down below.
 
 # revisions history
 
+## 0.0.12 - NintexO365
+ Apparently you can only need to set assigned use for production for the form when it is published. 
+so now the publish is before assigned use and also is forced if you set assigneduseforproduction to any non null value
+
 ## 0.0.11 - NintexO365
  removed the ThreadStatic attribute as it does not seem to work as expected.
  Besides, we dont ever use this in multi tenant scenarious, where you need separate api keys and domains, this is very unlikely, if we get there we will bring it back.
