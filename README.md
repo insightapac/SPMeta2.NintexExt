@@ -17,6 +17,10 @@ There is a list of possible improvements down below.
 
 # revisions history
 
+## 0.0.13 - NintexO365 - adding retry logic
+ Apparently you can only need to set assigned use for production for the form when it is published. 
+so now the publish is before assigned use and also is forced if you set assigneduseforproduction to any non null value
+
 ## 0.0.12 - NintexO365
  Apparently you can only need to set assigned use for production for the form when it is published. 
 so now the publish is before assigned use and also is forced if you set assigneduseforproduction to any non null value

@@ -47,6 +47,8 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
 
             // Create a new HTTP client and configure its base address.
             HttpClient client = new HttpClient();
+            HttpClientWrapper wrapper = new HttpClientWrapper(client);
+
             client.Timeout = NintexApiSettings.HttpRequestTimeout;
             client.BaseAddress = new Uri(spSiteUrl);
             // Add common request headers for the REST API to the HTTP client.
@@ -72,7 +74,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
 
             var getFormUri1 = String.Format("{0}/api/v1/workflows",
                 NintexApiSettings.WebServiceUrl.TrimEnd('/'));
-            var getResult1 = client.GetAsync(getFormUri1).Result;
+            var getResult1 = wrapper.Get(getFormUri1);
             var getResult1String = getResult1.Content.ReadAsStringAsync().Result;
             var parsedData = JObject.Parse(getResult1String);
 
@@ -110,7 +112,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                         );
                 }
                 HttpContent saveContent = new ByteArrayContent(workflowModel.WorkflowData);
-                result.saveResponse = client.PostAsync(importFormUri, saveContent).Result;
+                result.saveResponse = wrapper.Post(importFormUri, saveContent);
 
                 var saveresult = result.saveResponse.Content.ReadAsStringAsync().Result;
                 var parsedSavedData = JObject.Parse(saveresult);
@@ -131,7 +133,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                         );
                 }
                 HttpContent saveContent = new ByteArrayContent(workflowModel.WorkflowData);
-                result.saveResponse = client.PutAsync(importFormUri, saveContent).Result;
+                result.saveResponse = wrapper.Put(importFormUri, saveContent);
             }
 
 
@@ -145,8 +147,8 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                     workflowModel.AssignedUseForProduction.Value ? "production" : "development");
                 // interesting, this can return 405 and in details ()puiblishResponse.Content.ReadAsStringAsync()
                 // in my case i had  a message saying "your license does not allow this" or something like this
-                result.assignedUseForProductionValue = client.PutAsync(publishFormUri,
-                    new StringContent(content, null, "application/json")).Result;
+                result.assignedUseForProductionValue = wrapper.Put(publishFormUri,
+                    new StringContent(content, null, "application/json"));
             }
             if (workflowModel.Publish)
             {
@@ -154,7 +156,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                     NintexApiSettings.WebServiceUrl.TrimEnd('/'),
                     Uri.EscapeUriString(workflowId));
                 var content = "";
-                result.puiblishResponse = client.PostAsync(publishFormUri, new StringContent(content)).Result;
+                result.puiblishResponse = wrapper.Post(publishFormUri, new StringContent(content));
             }
 
             InvokeOnModelEvent(this, new ModelEventArgs

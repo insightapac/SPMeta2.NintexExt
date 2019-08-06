@@ -42,5 +42,10 @@ namespace SPMeta2.NintexExt.CSOM.O365.Services
         /// The timeout for HttpClient.Timeout that is used in the implementation
         /// </summary>
         public static TimeSpan HttpRequestTimeout = TimeSpan.FromMinutes(3);
+
+        /// <summary>
+        /// Maximum amount of retries in a case of error coming from httpclient
+        /// </summary>
+        public static int  MaxRetries = 1;
     }
 }

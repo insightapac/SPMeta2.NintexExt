@@ -71,6 +71,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
 
             // Create a new HTTP client and configure its base address.
             HttpClient client = new HttpClient();
+            HttpClientWrapper wrapper = new HttpClientWrapper(client);
             client.Timeout = NintexApiSettings.HttpRequestTimeout;
             client.BaseAddress = new Uri(spSiteUrl);
             // Add common request headers for the REST API to the HTTP client.
@@ -105,7 +106,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
             }
 
             HttpContent saveContent = new ByteArrayContent(formModel.FormData);
-            result.saveResponse = client.PutAsync(importFormUri, saveContent).Result;
+            result.saveResponse = wrapper.Put(importFormUri, saveContent);
 
             if (formModel.Publish || formModel.AssignedUseForProduction.HasValue)
             {
@@ -124,7 +125,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                 //        listContentType.StringId,
                 //        list.Id.ToString("B").ToUpper());
                 //}
-                result.puiblishResponse = client.PostAsync(publishFormUri, new StringContent(content)).Result;
+                result.puiblishResponse = wrapper.Post(publishFormUri, new StringContent(content));
             }
             if (formModel.AssignedUseForProduction.HasValue)
             {
@@ -137,8 +138,8 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                     formModel.AssignedUseForProduction.Value ? "production" : "development");
                 // interesting, this can return 405 and in details ()puiblishResponse.Content.ReadAsStringAsync()
                 // in my case i had  a message saying "your license does not allow this" or something like this
-                result.assignedUseForProductionValue = client.PutAsync(publishFormUri,
-                    new StringContent(content, null, "application/json")).Result;
+                result.assignedUseForProductionValue = wrapper.Put(publishFormUri,
+                    new StringContent(content, null, "application/json"));
             }
 
 

@@ -106,6 +106,7 @@
     <Compile Include="Definitions\NintexWebWorkflowO365Definition.cs" />
     <Compile Include="Definitions\NintexWorkflowO365DefinitionBase.cs" />
     <Compile Include="Definitions\NintexFormO365Definition.cs" />
+    <Compile Include="Handlers\HttpClientWrapper.cs" />
     <Compile Include="Handlers\NintexFormO365Handler.cs" />
     <Compile Include="Handlers\NintexFormO365HandlerOnProvisionedEvent.cs" />
     <Compile Include="Handlers\NintexListWorkflow365Handler.cs" />
