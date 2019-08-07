@@ -46,6 +46,6 @@ namespace SPMeta2.NintexExt.CSOM.O365.Services
         /// <summary>
         /// Maximum amount of retries in a case of error coming from httpclient
         /// </summary>
-        public static int  MaxRetries = 1;
+        public static int  MaxRetries = 3;
     }
 }

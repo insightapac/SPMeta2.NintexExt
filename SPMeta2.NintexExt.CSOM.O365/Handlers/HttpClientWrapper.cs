@@ -12,8 +12,6 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
     {
         private static HttpContent Clone(HttpContent content)
         {
-            //TODO: not working 
-            return content;
             HttpContent result = null;
             if (content is StringContent)
             {
@@ -22,6 +20,12 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
             else
             {
                 result = new ByteArrayContent(content.ReadAsByteArrayAsync().Result);
+            }
+
+            result.Headers.Clear();
+            foreach ( var header in content.Headers)
+            {
+                result.Headers.Add(header.Key, header.Value);
             }
 
             return result;
@@ -45,7 +49,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                     var q = 1;
                 }
             }
-            while ((iIdx++ < NintexApiSettings.MaxRetries) && (result == null || !result.IsSuccessStatusCode));
+            while ((++iIdx < NintexApiSettings.MaxRetries) && (result == null || !result.IsSuccessStatusCode));
             return result;
         }
 
@@ -62,7 +66,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                     var q = 1;
                 }
             }
-            while ((iIdx++ < NintexApiSettings.MaxRetries) && (result == null || !result.IsSuccessStatusCode));
+            while ((++iIdx < NintexApiSettings.MaxRetries) && (result == null || !result.IsSuccessStatusCode));
             return result;
         }
 
@@ -78,7 +82,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                     var q = 1;
                 }
             }
-            while ((iIdx++ < NintexApiSettings.MaxRetries) && (result == null || !result.IsSuccessStatusCode));
+            while ((++iIdx < NintexApiSettings.MaxRetries) && (result == null || !result.IsSuccessStatusCode));
             return result;
         }
     }
