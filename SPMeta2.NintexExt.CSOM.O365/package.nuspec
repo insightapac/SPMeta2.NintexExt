@@ -10,7 +10,9 @@
     <iconUrl>https://raw.githubusercontent.com/SubPointSolutions/spmeta2/dev/SPMeta2/SPMeta2.Dependencies/Images/SPMeta2_64_64.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>This package is an implementation for Office 365</description>
-    <releaseNotes>      Revised some logic for nintex forms assigneduse for production.
+    <releaseNotes>
+      Addded a setting NintexApiSettings.MaxRetries that allows the http request to be resent for the cases of network glitches, etc.
+      default value is 3.
     </releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>SharePoint Nintex SPMeta2</tags>

@@ -18,8 +18,8 @@ There is a list of possible improvements down below.
 # revisions history
 
 ## 0.0.14 - NintexO365 - adding retry logic
- Apparently you can only need to set assigned use for production for the form when it is published. 
-so now the publish is before assigned use and also is forced if you set assigneduseforproduction to any non null value
+ Addded a setting NintexApiSettings.MaxRetries that allows the http request to be resent for the cases of network glitches, etc.
+default value is 3.
 
 ## 0.0.13 - NintexO365 - skipped for superstitious reasons
 
