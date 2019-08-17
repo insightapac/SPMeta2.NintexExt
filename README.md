@@ -8,7 +8,9 @@ At the moment the project allows you to deploy nintex forms to the SP2013 on pre
 # Getting Started
 Look into the SPMeta2.NintexExt.CSOM.SP13.Test program for the sample of how you can use the package to deploy a nintex form. 
 Onprovisioning/Onprovisioned code is optional.
+
 The sample programs use libraries as-is, but for your programs it is recommended to use the nuget. 
+
 https://www.nuget.org/packages/SPMeta2.NintexExt.CSOM.SP13/
 https://www.nuget.org/packages/SPMeta2.NintexExt.CSOM.O365/
 
