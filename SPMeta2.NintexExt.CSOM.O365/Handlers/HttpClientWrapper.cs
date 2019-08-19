@@ -12,6 +12,10 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
     {
         private static HttpContent Clone(HttpContent content)
         {
+            if (content == null)
+            {
+                return null;
+            }
             HttpContent result = null;
             if (content is StringContent)
             {
@@ -37,13 +41,14 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
             this.innerClient = innerClient;
         }
 
-        public HttpResponseMessage Put(string requestUri, HttpContent content)
+        private static HttpResponseMessage ExecuteWrapper(string requestUri, HttpContent content, 
+            Func<string,HttpContent, Task<HttpResponseMessage>> innerAction)
         {
             HttpResponseMessage result = null;
             int iIdx = 0;
             do
             {
-                result = innerClient.PutAsync(requestUri, Clone(content)).Result;
+                result = innerAction(requestUri, Clone(content)).Result;
                 if (!result.IsSuccessStatusCode)
                 {//debug
                     var q = 1;
@@ -51,39 +56,24 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
             }
             while ((++iIdx < NintexApiSettings.MaxRetries) && (result == null || !result.IsSuccessStatusCode));
             return result;
+        }
+
+        public HttpResponseMessage Put(string requestUri, HttpContent content)
+        {
+            return ExecuteWrapper(requestUri, content, innerClient.PutAsync);
         }
 
         public HttpResponseMessage Post(string requestUri, HttpContent content)
         {
-            HttpResponseMessage result = null;
-            int iIdx = 0;
-            do
-            {
-                //TODO: find the way to clone the content so it does not get disposed
-                result = innerClient.PostAsync(requestUri, Clone(content)).Result;
-                if (!result.IsSuccessStatusCode)
-                {//debug
-                    var q = 1;
-                }
-            }
-            while ((++iIdx < NintexApiSettings.MaxRetries) && (result == null || !result.IsSuccessStatusCode));
-            return result;
+            return ExecuteWrapper(requestUri, content, innerClient.PostAsync);
         }
 
         public HttpResponseMessage Get(string requestUri)
         {
-            HttpResponseMessage result = null;
-            int iIdx = 0;
-            do
-            {
-                result = innerClient.GetAsync(requestUri).Result;
-                if (!result.IsSuccessStatusCode)
-                {//debug
-                    var q = 1;
-                }
-            }
-            while ((++iIdx < NintexApiSettings.MaxRetries) && (result == null || !result.IsSuccessStatusCode));
-            return result;
+            return ExecuteWrapper(requestUri, null, 
+                (innerRequestUri,content) =>{ return innerClient.GetAsync(innerRequestUri); }
+            );
+
         }
     }
 }

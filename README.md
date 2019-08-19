@@ -23,6 +23,9 @@ There is a list of possible improvements down below.
 
 # revisions history
 
+## 0.0.15 - NintexO365 - adding delays between retry timeouts
+ 
+
 ## 0.0.14 - NintexO365 - adding retry logic
  Addded a setting NintexApiSettings.MaxRetries that allows the http request to be resent for the cases of network glitches, etc.
 default value is 3.
