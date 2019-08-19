@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SPMeta2.NintexExt.CSOM.O365.Handlers
@@ -46,15 +47,17 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
         {
             HttpResponseMessage result = null;
             int iIdx = 0;
+            int timeout = NintexApiSettings.FirstRetryTimeoutMs;
             do
             {
                 result = innerAction(requestUri, Clone(content)).Result;
                 if (!result.IsSuccessStatusCode)
                 {//debug
-                    var q = 1;
+                    Thread.Sleep(timeout);
+                    timeout += NintexApiSettings.TimeoutIncreaseMs;
                 }
             }
-            while ((++iIdx < NintexApiSettings.MaxRetries) && (result == null || !result.IsSuccessStatusCode));
+            while ((iIdx++ < NintexApiSettings.MaxRetries) && (result == null || !result.IsSuccessStatusCode));
             return result;
         }
 

@@ -47,5 +47,15 @@ namespace SPMeta2.NintexExt.CSOM.O365.Services
         /// Maximum amount of retries in a case of error coming from httpclient
         /// </summary>
         public static int  MaxRetries = 3;
+
+        /// <summary>
+        /// Amount in milliseconds to wait after first error
+        /// </summary>
+        public static int  FirstRetryTimeoutMs = 5000;
+    
+        /// <summary>
+        /// How the timeout increases after second and subsequent errors
+        /// </summary>
+        public static int TimeoutIncreaseMs = 5000;
     }
 }
