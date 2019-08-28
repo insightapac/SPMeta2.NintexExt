@@ -25,14 +25,14 @@ There is a list of possible improvements down below.
 
 
 ## 0.0.16 - NintexO365 - NintexApiSettings.SemiSuccessFullPublishHttpErrorCodes
-      Addded a setting NintexApiSettings.SemiSuccessFullPublishHttpErrorCodes that allows to check if assignedUse or publish operation did in fact work, so we avoid unnecessarily retries.
-      We have found out that we have an error 502 bad gateway that actually does not prevent the operations from working. 
+Addded a setting NintexApiSettings.SemiSuccessFullPublishHttpErrorCodes that allows to check if assignedUse or publish operation did in fact work, so we avoid unnecessarily retries.
+We have found out that we have an error 502 bad gateway that actually does not prevent the operations from working. 
 
 ## 0.0.15 - NintexO365 - adding delays between retry timeouts
  
 
 ## 0.0.14 - NintexO365 - adding retry logic
- Addded a setting NintexApiSettings.MaxRetries that allows the http request to be resent for the cases of network glitches, etc.
+    Addded a setting NintexApiSettings.MaxRetries that allows the http request to be resent for the cases of network glitches, etc.
 default value is 3.
 
 ## 0.0.13 - NintexO365 - skipped for superstitious reasons
