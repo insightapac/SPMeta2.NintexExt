@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>SPMeta2.NintexExt.CSOM.O365</id>
-    <version>0.0.15</version>
+    <version>0.0.16</version>
     <authors>mbakirov</authors>
     <owners>mbakirov</owners>
     <licenseUrl>https://opensource.org/licenses/MS-PL</licenseUrl>
@@ -11,8 +11,8 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>This package is an implementation for Office 365</description>
     <releaseNotes>
-      Addded a setting NintexApiSettings.MaxRetries that allows the http request to be resent for the cases of network glitches, etc.
-      default value is 3.
+      Addded a setting NintexApiSettings.SemiSuccessFullPublishHttpErrorCodes that allows to check if assignedUse or publish operation did in fact work, so we avoid unnecessarily retries.
+      We have found out that we have an error 502 bad gateway that actually does not prevent the operations from working. 
     </releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>SharePoint Nintex SPMeta2</tags>

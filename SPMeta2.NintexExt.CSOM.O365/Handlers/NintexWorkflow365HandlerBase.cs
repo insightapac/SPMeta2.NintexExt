@@ -10,6 +10,7 @@ using SPMeta2.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -143,12 +144,34 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                     NintexApiSettings.WebServiceUrl.TrimEnd('/'),
                     Uri.EscapeUriString(workflowId));
                 var content = "";
-                content = string.Format(@"{{""value"":""{0}""}}",
-                    workflowModel.AssignedUseForProduction.Value ? "production" : "development");
+                var asssignedUseStringValue = workflowModel.AssignedUseForProduction.Value ? "production" : "development";
+                content = string.Format(@"{{""value"":""{0}""}}",asssignedUseStringValue);
                 // interesting, this can return 405 and in details ()puiblishResponse.Content.ReadAsStringAsync()
                 // in my case i had  a message saying "your license does not allow this" or something like this
                 result.assignedUseForProductionValue = wrapper.Put(publishFormUri,
-                    new StringContent(content, null, "application/json"));
+                    new StringContent(content, null, "application/json"), 
+                    (obj,args)=> {
+                        if (NintexApiSettings.SemiSuccessFullPublishHttpErrorCodes.Contains(args.Message.StatusCode))
+                        {
+
+                            getFormUri1 = String.Format("{0}/api/v1/workflows",
+                                NintexApiSettings.WebServiceUrl.TrimEnd('/'));
+                            getResult1 = wrapper.Get(getFormUri1);
+                            getResult1String = getResult1.Content.ReadAsStringAsync().Result;
+                            parsedData = JObject.Parse(getResult1String);
+
+                            var assignedUseResult  = (from d in (parsedData["data"] as JArray)
+                                          where (d["id"].Value<string>() == workflowId)
+                                          select d["assignedUse"].Value<string>()).FirstOrDefault();
+                            if (asssignedUseStringValue.ToLower() == (assignedUseResult??"").ToLower())
+                            {
+                                args.Message.StatusCode = (HttpStatusCode)299;
+                                args.StopProcessing = true;
+                            }
+
+                        }
+
+                    });
             }
             if (workflowModel.Publish)
             {
@@ -156,7 +179,29 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                     NintexApiSettings.WebServiceUrl.TrimEnd('/'),
                     Uri.EscapeUriString(workflowId));
                 var content = "";
-                result.puiblishResponse = wrapper.Post(publishFormUri, new StringContent(content));
+                result.puiblishResponse = wrapper.Post(publishFormUri, new StringContent(content),
+                    (obj, args)=> {
+                    if (NintexApiSettings.SemiSuccessFullPublishHttpErrorCodes.Contains(args.Message.StatusCode))
+                    {
+
+                        getFormUri1 = String.Format("{0}/api/v1/workflows",
+                            NintexApiSettings.WebServiceUrl.TrimEnd('/'));
+                        getResult1 = wrapper.Get(getFormUri1);
+                        getResult1String = getResult1.Content.ReadAsStringAsync().Result;
+                        parsedData = JObject.Parse(getResult1String);
+
+                        var published = (from d in (parsedData["data"] as JArray)
+                                                 where (d["id"].Value<string>() == workflowId)
+                                                 select d["isPublished"].Value<string>()).FirstOrDefault();
+                        if ((published??"").ToLower() == "true")
+                        {
+                            args.Message.StatusCode = (HttpStatusCode)299;
+                            args.StopProcessing = true;
+                        }
+
+                    }
+
+                });
             }
 
             InvokeOnModelEvent(this, new ModelEventArgs

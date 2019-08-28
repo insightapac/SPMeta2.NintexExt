@@ -57,5 +57,13 @@ namespace SPMeta2.NintexExt.CSOM.O365.Services
         /// How the timeout increases after second and subsequent errors
         /// </summary>
         public static int TimeoutIncreaseMs = 5000;
+
+        /// <summary>
+        /// Defines the lists of codes that are treated as semi-success for workflow publish and assigned use operations.
+        /// if one of these codes comes up, then the library checks that the publish and assigned use has actually happened.
+        /// in this case the error code is changed back to 299 so you can still check the error message
+        /// </summary>
+        public static System.Net.HttpStatusCode[] SemiSuccessFullPublishHttpErrorCodes =
+            { System.Net.HttpStatusCode.BadGateway};
     }
 }
