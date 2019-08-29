@@ -11,8 +11,8 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>This package is an implementation for Office 365</description>
     <releaseNotes>
-      Addded a setting NintexApiSettings.SemiSuccessFullPublishHttpErrorCodes that allows to check if assignedUse or publish operation did in fact work, so we avoid unnecessarily retries.
-      We have found out that we have an error 502 bad gateway that actually does not prevent the operations from working. 
+      Changed NintexApiSettings.SemiSuccessFullPublishHttpErrorCodes to a function ShouldApplySmartRetry.
+      also added SmartRetryCheckResult.
     </releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>SharePoint Nintex SPMeta2</tags>
