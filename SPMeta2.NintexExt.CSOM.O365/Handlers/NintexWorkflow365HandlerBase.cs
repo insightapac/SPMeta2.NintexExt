@@ -14,6 +14,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SPMeta2.NintexExt.CSOM.O365.Handlers
@@ -149,11 +150,11 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                 // interesting, this can return 405 and in details ()puiblishResponse.Content.ReadAsStringAsync()
                 // in my case i had  a message saying "your license does not allow this" or something like this
                 result.assignedUseForProductionValue = wrapper.Put(publishFormUri,
-                    new StringContent(content, null, "application/json"), 
+                    new StringContent(content, null, "application/json"), "Assigned Use",
                     (obj,args)=> {
-                        if (NintexApiSettings.SemiSuccessFullPublishHttpErrorCodes.Contains(args.Message.StatusCode))
+                        if (NintexApiSettings.ShouldApplySmartRetry(args))
                         {
-
+                            Thread.Sleep(NintexApiSettings.SemiSuccessCheckTimeoutMs);
                             getFormUri1 = String.Format("{0}/api/v1/workflows",
                                 NintexApiSettings.WebServiceUrl.TrimEnd('/'));
                             getResult1 = wrapper.Get(getFormUri1);
@@ -168,6 +169,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                                 args.Message.StatusCode = (HttpStatusCode)299;
                                 args.StopProcessing = true;
                             }
+                            NintexApiSettings.SmartRetryCheckResult(args);
 
                         }
 
@@ -180,10 +182,11 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                     Uri.EscapeUriString(workflowId));
                 var content = "";
                 result.puiblishResponse = wrapper.Post(publishFormUri, new StringContent(content),
+                    "Publish",
                     (obj, args)=> {
-                    if (NintexApiSettings.SemiSuccessFullPublishHttpErrorCodes.Contains(args.Message.StatusCode))
+                    if (NintexApiSettings.ShouldApplySmartRetry(args))
                     {
-
+                        Thread.Sleep(NintexApiSettings.SemiSuccessCheckTimeoutMs);
                         getFormUri1 = String.Format("{0}/api/v1/workflows",
                             NintexApiSettings.WebServiceUrl.TrimEnd('/'));
                         getResult1 = wrapper.Get(getFormUri1);
@@ -192,16 +195,17 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
 
                         var published = (from d in (parsedData["data"] as JArray)
                                                  where (d["id"].Value<string>() == workflowId)
-                                                 select d["isPublished"].Value<string>()).FirstOrDefault();
-                        if ((published??"").ToLower() == "true")
+                                                 select d["isPublished"].Value<bool>()).FirstOrDefault();
+                        if (published)
                         {
                             args.Message.StatusCode = (HttpStatusCode)299;
                             args.StopProcessing = true;
                         }
+                        NintexApiSettings.SmartRetryCheckResult(args);
 
-                    }
+                        }
 
-                });
+                    });
             }
 
             InvokeOnModelEvent(this, new ModelEventArgs

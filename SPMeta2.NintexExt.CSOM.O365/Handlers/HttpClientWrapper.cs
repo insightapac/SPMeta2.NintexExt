@@ -13,11 +13,15 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
     {
         public class HttpErrorEventArgs : EventArgs
         {
-            public HttpErrorEventArgs (HttpResponseMessage  message)
+            public HttpErrorEventArgs (HttpResponseMessage  message, string requestUrl, string operation)
             {
                 this.Message = message;
                 this.StopProcessing = false;
+                this.RequestUrl = requestUrl;
+                this.Operation = operation;
             }
+            public string RequestUrl { get; private set; }
+            public string Operation{ get; private set; }
             public HttpResponseMessage Message { get; private set; }
             public bool StopProcessing { get;set; }
         }
@@ -53,8 +57,9 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
             this.innerClient = innerClient;
         }
 
-        private static HttpResponseMessage ExecuteWrapper(string requestUri, HttpContent content, 
+        private static HttpResponseMessage ExecuteWrapper(string requestUri, HttpContent content,
             Func<string,HttpContent, Task<HttpResponseMessage>> innerAction,
+            string operation = "",
             EventHandler<HttpErrorEventArgs> errorHandler = null)
         {
             HttpResponseMessage result = null;
@@ -67,7 +72,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
                 {//debug
                     if (errorHandler != null)
                     {
-                        var args = new HttpErrorEventArgs(result);
+                        var args = new HttpErrorEventArgs(result, requestUri, operation);
                         errorHandler(null, args);
                         if (args.StopProcessing)
                         {
@@ -82,22 +87,23 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
             return result;
         }
 
-        public HttpResponseMessage Put(string requestUri, HttpContent content, 
+        public HttpResponseMessage Put(string requestUri, HttpContent content, string operation = "",
             EventHandler<HttpErrorEventArgs> errorHandler = null)
         {
-            return ExecuteWrapper(requestUri, content, innerClient.PutAsync, errorHandler);
+            return ExecuteWrapper(requestUri, content, innerClient.PutAsync, operation, errorHandler);
         }
 
-        public HttpResponseMessage Post(string requestUri, HttpContent content, 
+        public HttpResponseMessage Post(string requestUri, HttpContent content, string operation = "",
             EventHandler<HttpErrorEventArgs> errorHandler = null)
         {
-            return ExecuteWrapper(requestUri, content, innerClient.PostAsync, errorHandler);
+            return ExecuteWrapper(requestUri, content, innerClient.PostAsync, operation, errorHandler);
         }
 
-        public HttpResponseMessage Get(string requestUri)
+        public HttpResponseMessage Get(string requestUri,string operation = "")
         {
             return ExecuteWrapper(requestUri, null, 
-                (innerRequestUri,content) =>{ return innerClient.GetAsync(innerRequestUri); }
+                (innerRequestUri,content) =>{ return innerClient.GetAsync(innerRequestUri); },
+                operation
             );
 
         }

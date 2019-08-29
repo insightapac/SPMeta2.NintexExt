@@ -23,6 +23,11 @@ There is a list of possible improvements down below.
 
 # revisions history
 
+## 0.0.17 - NintexO365 - NintexApiSettings.SemiSuccessFullPublishHttpErrorCodes
+changed NintexApiSettings.SemiSuccessFullPublishHttpErrorCodes to a function ShouldApplySmartRetry. 
+also added SmartRetryCheckResult.
+
+
 
 ## 0.0.16 - NintexO365 - NintexApiSettings.SemiSuccessFullPublishHttpErrorCodes
 Addded a setting NintexApiSettings.SemiSuccessFullPublishHttpErrorCodes that allows to check if assignedUse or publish operation did in fact work, so we avoid unnecessarily retries.

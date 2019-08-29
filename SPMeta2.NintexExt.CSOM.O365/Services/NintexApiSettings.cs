@@ -46,24 +46,57 @@ namespace SPMeta2.NintexExt.CSOM.O365.Services
         /// <summary>
         /// Maximum amount of retries in a case of error coming from httpclient
         /// </summary>
-        public static int  MaxRetries = 3;
+        public static int  MaxRetries = 4;
 
         /// <summary>
         /// Amount in milliseconds to wait after first error
         /// </summary>
-        public static int  FirstRetryTimeoutMs = 5000;
+        public static int FirstRetryTimeoutMs = 5000;
     
         /// <summary>
         /// How the timeout increases after second and subsequent errors
         /// </summary>
         public static int TimeoutIncreaseMs = 5000;
 
+        ///// <summary>
+        ///// Defines the lists of codes that are treated as semi-success for workflow publish and assigned use operations.
+        ///// if one of these codes comes up, then the library checks that the publish and assigned use has actually happened.
+        ///// in this case the error code is changed back to 299 so you can still check the error message
+        ///// </summary>
+        //public static System.Net.HttpStatusCode[] SemiSuccessFullPublishHttpErrorCodes =
+        //    { System.Net.HttpStatusCode.BadGateway};
+
         /// <summary>
-        /// Defines the lists of codes that are treated as semi-success for workflow publish and assigned use operations.
-        /// if one of these codes comes up, then the library checks that the publish and assigned use has actually happened.
+        /// Defines the lists condition when the result is treated as semi-success for workflow publish and assigned use operations.
+        /// if true, then the library checks that the publish and assigned use has actually happened.
         /// in this case the error code is changed back to 299 so you can still check the error message
+        /// 
+        /// by default returns true when the result code is 502, but can be overriden
         /// </summary>
-        public static System.Net.HttpStatusCode[] SemiSuccessFullPublishHttpErrorCodes =
-            { System.Net.HttpStatusCode.BadGateway};
+        public static Func<Handlers.HttpClientWrapper.HttpErrorEventArgs, bool> ShouldApplySmartRetry = 
+            (args)=> {
+                return DefaultShouldApplySmartRetry(args);
+            };
+
+        /// <summary>
+        /// Default implementation for ShouldApplySmartRetry
+        /// Returns true when the result code is 502
+        public static bool DefaultShouldApplySmartRetry(Handlers.HttpClientWrapper.HttpErrorEventArgs args)
+        {
+            return (args.Message.StatusCode == System.Net.HttpStatusCode.BadGateway);
+        }
+
+        /// <summary>
+        /// You can override this action if you wnat to subscribe to event that happens after smart retry and see its outcome
+        /// </summary>
+        public static Action<Handlers.HttpClientWrapper.HttpErrorEventArgs> SmartRetryCheckResult =
+            (args) => {
+                ;
+            };
+
+        /// <summary>
+        /// Amount in milliseconds to wait after first error
+        /// </summary>
+        public static int SemiSuccessCheckTimeoutMs = 10000;
     }
 }
