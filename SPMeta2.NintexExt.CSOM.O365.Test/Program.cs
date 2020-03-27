@@ -3,6 +3,7 @@ using SPMeta2.CSOM.Services;
 using SPMeta2.NintexExt.CSOM.O365.Handlers;
 using SPMeta2.NintexExt.CSOM.O365.Services;
 using SPMeta2.NintexExt.CSOM.O365.Test.Model;
+using SPMeta2.NintexExt.Utils;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -18,6 +19,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test
     {
         static void Main(string[] args)
         {
+            CommandLineUtils.ApplyValuesFromcommandLine(args);
             var targetSiteUrl = ConfigurationManager.AppSettings.Get("targetSiteUrl");
             using (ClientContext context = new ClientContext(targetSiteUrl))
             {
@@ -40,7 +42,8 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test
 
                 NintexApiSettings.ApiKey = ConfigurationManager.AppSettings.Get("nintexApiKey");
                 NintexApiSettings.WebServiceUrl = ConfigurationManager.AppSettings.Get("nintexServiceUrl");
-                NintexApiSettings.HttpRequestTimeout = TimeSpan.FromMinutes(4);
+                NintexApiSettings.HttpRequestTimeout = TimeSpan.Parse(ConfigurationManager.AppSettings["nintexApiTimeout"]);
+
 
                 context.Load(context.Web, x=>x.Title, x=>x.Url);
                 context.ExecuteQuery();
