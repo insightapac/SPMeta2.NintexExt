@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>SPMeta2.NintexExt.CSOM.O365</id>
-    <version>0.0.17</version>
+    <version>0.0.18</version>
     <authors>mbakirov</authors>
     <owners>mbakirov</owners>
     <licenseUrl>https://opensource.org/licenses/MS-PL</licenseUrl>
@@ -10,11 +10,9 @@
     <iconUrl>https://raw.githubusercontent.com/SubPointSolutions/spmeta2/dev/SPMeta2/SPMeta2.Dependencies/Images/SPMeta2_64_64.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>This package is an implementation for Office 365</description>
-    <releaseNotes>
-      Changed NintexApiSettings.SemiSuccessFullPublishHttpErrorCodes to a function ShouldApplySmartRetry.
-      also added SmartRetryCheckResult.
+    <releaseNotes>Added support for the subsites in the O365.
     </releaseNotes>
-    <copyright>Copyright 2019</copyright>
+    <copyright>Copyright 2020</copyright>
     <tags>SharePoint Nintex SPMeta2</tags>
     <dependencies>
       <dependency id="SPMeta2.Core" version="1.2.90" />

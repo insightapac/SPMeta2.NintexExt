@@ -23,6 +23,12 @@ There is a list of possible improvements down below.
 
 # revisions history
 
+## 0.0.18 - NintexO365 - added support for subsites.
+
+Now if you have a list on the subsite, and you want to use the spmeta2 subweb, and then want to 
+deploy a form or a workflow to that list it will work.
+
+
 ## 0.0.17 - NintexO365 - NintexApiSettings.SemiSuccessFullPublishHttpErrorCodes
 changed NintexApiSettings.SemiSuccessFullPublishHttpErrorCodes to a function ShouldApplySmartRetry. 
 also added SmartRetryCheckResult.
