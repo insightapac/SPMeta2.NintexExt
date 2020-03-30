@@ -47,7 +47,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
             string formDigestValue = clientContext.GetFormDigestDirect().DigestValue;
 
             var clientCredentials = clientContext.Credentials.WithAssertAndCast<SharePointOnlineCredentials>("sharepoint online credentials", value => value.RequireNotNull());
-            var spSiteUrl = clientContext.Url;
+            var spSiteUrl = web.Url;
 
             /// find the content type id or get the default one if not specified
             var listContentTypes = list.ContentTypes;

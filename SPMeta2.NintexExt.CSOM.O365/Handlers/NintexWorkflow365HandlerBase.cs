@@ -45,7 +45,7 @@ namespace SPMeta2.NintexExt.CSOM.O365.Handlers
             string formDigestValue = clientContext.GetFormDigestDirect().DigestValue;
 
             var clientCredentials = clientContext.Credentials.WithAssertAndCast<SharePointOnlineCredentials>("sharepoint online credentials", value => value.RequireNotNull());
-            var spSiteUrl = clientContext.Url;
+            var spSiteUrl = web.Url;
 
             // Create a new HTTP client and configure its base address.
             HttpClient client = new HttpClient();

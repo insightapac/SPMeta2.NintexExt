@@ -54,8 +54,9 @@ namespace SPMeta2.NintexExt.CSOM.O365.Test
 
                 var service = new CSOMProvisionService();
                 service.RegisterModelHandlers(typeof(NintexFormO365Handler).Assembly);
+                WebModel.PreProvision(context, service);
+                Console.WriteLine("please ensure that the subweb NintexTest has the nintex apps installed and then press any key");
                 WebModel.Provision(context, service);
-
 
             }
 
